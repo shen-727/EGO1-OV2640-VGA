@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat Jun 10 10:52:44 2023
+# Process ID: 25576
+# Current directory: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/pll_clock_synth_1
+# Command line: vivado.exe -log pll_clock.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pll_clock.tcl
+# Log file: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/pll_clock_synth_1/pll_clock.vds
+# Journal file: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/pll_clock_synth_1\vivado.jou
+#-----------------------------------------------------------
+source pll_clock.tcl -notrace
