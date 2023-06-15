@@ -1,0 +1,2 @@
+# EGO1-OV2640-VGA
+基于EGO1_FPGA开发板采集OV2640摄像头数据并使用VGA显示
