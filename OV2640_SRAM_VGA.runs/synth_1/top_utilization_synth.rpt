@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sun Jun 11 14:29:46 2023
+| Date         : Sun Jun 25 14:41:03 2023
 | Host         : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  201 |     0 |     20800 |  0.97 |
-|   LUT as Logic          |  201 |     0 |     20800 |  0.97 |
+| Slice LUTs*             |  249 |     0 |     20800 |  1.20 |
+|   LUT as Logic          |  249 |     0 |     20800 |  1.20 |
 |   LUT as Memory         |    0 |     0 |      9600 |  0.00 |
-| Slice Registers         |  234 |     0 |     41600 |  0.56 |
-|   Register as Flip Flop |  234 |     0 |     41600 |  0.56 |
+| Slice Registers         |  245 |     0 |     41600 |  0.59 |
+|   Register as Flip Flop |  245 |     0 |     41600 |  0.59 |
 |   Register as Latch     |    0 |     0 |     41600 |  0.00 |
 | F7 Muxes                |    0 |     0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |      8150 |  0.00 |
@@ -54,10 +54,10 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 2     |          Yes |           - |          Set |
-| 20    |          Yes |           - |        Reset |
-| 45    |          Yes |         Set |            - |
-| 167   |          Yes |       Reset |            - |
+| 32    |          Yes |           - |          Set |
+| 41    |          Yes |           - |        Reset |
+| 15    |          Yes |         Set |            - |
+| 157   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -91,7 +91,7 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |   74 |     0 |       210 | 35.24 |
+| Bonded IOB                  |   75 |     0 |       210 | 35.71 |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         5 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         5 |  0.00 |
@@ -147,20 +147,20 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  167 |        Flop & Latch |
-| LUT3     |   64 |                 LUT |
-| LUT6     |   50 |                 LUT |
+| FDRE     |  157 |        Flop & Latch |
+| LUT3     |   89 |                 LUT |
+| LUT6     |   75 |                 LUT |
 | LUT1     |   47 |                 LUT |
-| FDSE     |   45 |        Flop & Latch |
 | OBUF     |   44 |                  IO |
-| LUT4     |   40 |                 LUT |
-| LUT5     |   33 |                 LUT |
-| LUT2     |   31 |                 LUT |
-| IBUF     |   25 |                  IO |
-| FDCE     |   20 |        Flop & Latch |
+| LUT4     |   42 |                 LUT |
+| FDCE     |   41 |        Flop & Latch |
+| LUT2     |   38 |                 LUT |
+| LUT5     |   35 |                 LUT |
+| FDPE     |   32 |        Flop & Latch |
+| IBUF     |   26 |                  IO |
+| CARRY4   |   25 |          CarryLogic |
 | OBUFT    |   17 |                  IO |
-| CARRY4   |   17 |          CarryLogic |
-| FDPE     |    2 |        Flop & Latch |
+| FDSE     |   15 |        Flop & Latch |
 | BUFG     |    2 |               Clock |
 | RAMB18E1 |    1 |        Block Memory |
 +----------+------+---------------------+

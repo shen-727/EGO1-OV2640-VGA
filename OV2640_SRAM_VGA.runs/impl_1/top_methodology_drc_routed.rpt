@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sun Jun 11 14:31:00 2023
+| Date         : Sun Jun 25 14:42:07 2023
 | Host         : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 151
+             Violations found: 163
 +-----------+------------------+-------------------------------+------------+
 | Rule      | Severity         | Description                   | Violations |
 +-----------+------------------+-------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 143        |
+| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 155        |
 | LUTAR-1   | Warning          | LUT drives async reset alert  | 1          |
 | TIMING-18 | Warning          | Missing input or output delay | 7          |
 +-----------+------------------+-------------------------------+------------+
@@ -496,262 +496,322 @@ Related violations: <none>
 
 TIMING-17#93 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[0]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#94 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[10]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#95 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[11]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#96 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[12]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#97 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[13]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#98 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[14]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#99 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[15]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#100 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[16]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#101 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[17]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#102 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[18]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#103 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[1]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#104 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[2]/C is not reached by a timing clock
+The clock pin VGA/SHOW/counter_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#105 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[3]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#106 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[4]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#107 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[5]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#108 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[6]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[12]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#109 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[7]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[13]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#110 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[8]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[14]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#111 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/sram_addr_reg[9]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[15]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#112 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[0]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[16]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#113 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[10]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[17]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#114 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[11]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[18]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#115 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[1]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#116 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[2]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#117 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[3]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#118 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[4]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#119 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[5]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#120 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[6]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#121 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[7]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#122 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[8]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#123 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/SHOW/vgr_data_reg[9]/C is not reached by a timing clock
+The clock pin VGA/SHOW/sram_addr_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#124 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[0]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#125 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[1]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[10]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#126 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[2]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[11]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#127 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[3]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#128 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[4]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#129 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[5]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#130 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[6]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#131 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[7]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#132 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[8]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#133 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/x_cnt_reg[9]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[7]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#134 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[0]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[8]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#135 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[1]/C is not reached by a timing clock
+The clock pin VGA/SHOW/vgr_data_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#136 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[2]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#137 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[3]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#138 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[4]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#139 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[5]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#140 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[6]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#141 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[7]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[5]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#142 Critical Warning
 Non-clocked sequential cell  
-The clock pin VGA/TIME_MARK/y_cnt_reg[8]/C is not reached by a timing clock
+The clock pin VGA/TIME_MARK/x_cnt_reg[6]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#143 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/x_cnt_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#144 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/x_cnt_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#145 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/x_cnt_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#146 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#147 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#148 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#149 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#150 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#151 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#152 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#153 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#154 Critical Warning
+Non-clocked sequential cell  
+The clock pin VGA/TIME_MARK/y_cnt_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#155 Critical Warning
 Non-clocked sequential cell  
 The clock pin VGA/TIME_MARK/y_cnt_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 LUTAR-1#1 Warning
 LUT drives async reset alert  
-LUT cell CAM_INIT/sender/data_temp[10]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) VGA/TIME_MARK/x_cnt_reg[1]/CLR, VGA/TIME_MARK/x_cnt_reg[2]/CLR, VGA/TIME_MARK/x_cnt_reg[3]/CLR, VGA/TIME_MARK/x_cnt_reg[4]/CLR, VGA/TIME_MARK/x_cnt_reg[5]/CLR, VGA/TIME_MARK/x_cnt_reg[6]/CLR, VGA/TIME_MARK/x_cnt_reg[7]/CLR, VGA/TIME_MARK/x_cnt_reg[8]/CLR, VGA/TIME_MARK/x_cnt_reg[9]/CLR, VGA/TIME_MARK/y_cnt_reg[1]/CLR, VGA/TIME_MARK/y_cnt_reg[2]/CLR, VGA/TIME_MARK/y_cnt_reg[3]/CLR, VGA/TIME_MARK/y_cnt_reg[4]/CLR, VGA/TIME_MARK/y_cnt_reg[5]/CLR, VGA/TIME_MARK/y_cnt_reg[6]/CLR (the first 15 of 22 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+LUT cell CAM_INIT/SCCB_WRITE/data_temp[10]_i_1, with 2 or more inputs, drives asynchronous preset/clear pin(s) VGA/TIME_MARK/x_cnt_reg[1]/CLR, VGA/TIME_MARK/x_cnt_reg[2]/CLR, VGA/TIME_MARK/x_cnt_reg[3]/CLR, VGA/TIME_MARK/x_cnt_reg[4]/CLR, VGA/TIME_MARK/x_cnt_reg[5]/CLR, VGA/TIME_MARK/x_cnt_reg[6]/CLR, VGA/TIME_MARK/x_cnt_reg[7]/CLR, VGA/TIME_MARK/x_cnt_reg[8]/CLR, VGA/TIME_MARK/x_cnt_reg[9]/CLR, VGA/TIME_MARK/y_cnt_reg[1]/CLR, VGA/TIME_MARK/y_cnt_reg[2]/CLR, VGA/TIME_MARK/y_cnt_reg[3]/CLR, VGA/TIME_MARK/y_cnt_reg[4]/CLR, VGA/TIME_MARK/y_cnt_reg[5]/CLR, VGA/TIME_MARK/y_cnt_reg[6]/CLR (the first 15 of 73 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
 Related violations: <none>
 
 TIMING-18#1 Warning

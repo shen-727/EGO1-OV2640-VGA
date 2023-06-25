@@ -21,51 +21,51 @@
 
 
 module reg_solve(
-    input clk,
-    input rst,
-    output reg [15:0]data_out,
-    output reg_ready,
-    input sccb_ready
+    input clk,  //100MHz时钟信号
+    input rst,  //复位信号
+    output reg [15:0]data_out,  //配置寄存器地址+寄存器数据
+    output reg_ready,   //寄存器配置完成信号
+    input sccb_ready    //SCCB通信完成信号
 );
-    parameter num_reg=176;
-    reg [10:0] count=0;
+    parameter num_reg = 176;  //寄存器配置命令条数
+    reg [10:0] count = 0;
 
     always @ (posedge clk)
     begin
         if(rst)
-            count<=0;
-        else if(reg_ready&&sccb_ready)
-            count<=count+1;
+            count <= 0;
+        else if(reg_ready && sccb_ready)
+            count <= count + 1;
     end
 
-    assign reg_ready=(count<=num_reg);
+    assign reg_ready = (count <= num_reg);
 
     always @ (posedge clk)
     case (count)
     8'h00:
-    data_out <= 16'hFF01;
+    data_out <= 16'hFF01;   //配置寄存器1
     8'h01 :
-    data_out <= 16'h1280;
+    data_out <= 16'h1280;   //初始化寄存器配置为出厂状态
     8'h02 :
-    data_out <= 16'hFF00;
+    data_out <= 16'hFF00;   //配置寄存器0
     8'h03 :
-    data_out <= 16'h2CFF;
+    data_out <= 16'h2CFF;   
     8'h04 :
     data_out <= 16'h2EDF;
     8'h05 :
-    data_out <= 16'hFF01;
+    data_out <= 16'hFF01;   //配置寄存器1
     8'h06 :
-    data_out <= 16'h3C32;
+    data_out <= 16'h3C32;   
     8'h07 :
-    data_out <= 16'h1101;
+    data_out <= 16'h1101;   //OV2640时钟频率控制，二分频
     8'h08 :
-    data_out <= 16'h0902;
+    data_out <= 16'h0902;   //输出驱动选择2倍
     8'h09 :
-    data_out <= 16'h0420;
+    data_out <= 16'h0420;   //自动曝光控制
     8'h0A :
-    data_out <= 16'h13E5;
+    data_out <= 16'h13E5;   //自动增益，自动曝光
     8'h0B :
-    data_out <= 16'h1448;
+    data_out <= 16'h1448;   //设置增益倍数
     8'h0C :
     data_out <= 16'h2C0C;
     8'h0D :
@@ -91,7 +91,7 @@ module reg_solve(
     8'h17 :
     data_out <= 16'h2300;
     8'h18 :
-    data_out <= 16'h34C0;
+    data_out <= 16'h34C0;   //窗口放大起始点
     8'h19 :
     data_out <= 16'h361A;
     8'h1A :
@@ -99,13 +99,13 @@ module reg_solve(
     8'h1B :
     data_out <= 16'h07C0;
     8'h1C :
-    data_out <= 16'h0D87;
+    data_out <= 16'h0D87;   //时钟输出与掉电引脚状态
     8'h1D :
-    data_out <= 16'h0E41;
+    data_out <= 16'h0E41;   
     8'h1E :
     data_out <= 16'h4C00;
     8'h1F :
-    data_out <= 16'h4800;
+    data_out <= 16'h4800;   //放大模式下，起始场数量
     8'h20 :
     data_out <= 16'h5B00;
     8'h21 :
@@ -115,25 +115,25 @@ module reg_solve(
     8'h23 :
     data_out <= 16'h2199;
     8'h24 :
-    data_out <= 16'h2440;
+    data_out <= 16'h2440;   //增益控制
     8'h25 :
-    data_out <= 16'h2538;
+    data_out <= 16'h2538;   //增益控制
     8'h26 :
-    data_out <= 16'h2682;
+    data_out <= 16'h2682;   //增益控制
     8'h27 :
-    data_out <= 16'h5C00;
+    data_out <= 16'h5C00;   
     8'h28 :
     data_out <= 16'h6300;
     8'h29 :
-    data_out <= 16'h4600;
+    data_out <= 16'h4600;   //帧长度调整
     8'h2A :
-    data_out <= 16'h0C3C;
+    data_out <= 16'h0C3C;   //仅输出单帧图像
     8'h2B :
-    data_out <= 16'h6170;
+    data_out <= 16'h6170;   //histogram algorithm配置
     8'h2C :
-    data_out <= 16'h6280;
+    data_out <= 16'h6280;   //histogram algorithm配置
     8'h2D :
-    data_out <= 16'h7C05;
+    data_out <= 16'h7C05;   
     8'h2E :
     data_out <= 16'h2080;
     8'h2F :
@@ -151,23 +151,23 @@ module reg_solve(
     8'h35 :
     data_out <= 16'h73C1;
     8'h36 :
-    data_out <= 16'h1240;
+    data_out <= 16'h1240;   //配置SVGA采样模式
     8'h37 :
-    data_out <= 16'h1711;
+    data_out <= 16'h1711;   //配置水平起始采样像素位置
     8'h38 :
-    data_out <= 16'h1839;
+    data_out <= 16'h1839;   //配置水平起始采样像素位置
     8'h39 :
-    data_out <= 16'h1900;
+    data_out <= 16'h1900;   //配置竖直起始采样像素位置
     8'h3A :
-    data_out <= 16'h1A3C;
+    data_out <= 16'h1A3C;   //配置竖直起始采样像素位置
     8'h3B :
-    data_out <= 16'h3209;
+    data_out <= 16'h3209;   //像素时钟不分频，配置起始采样像素位置
     8'h3C :
     data_out <= 16'h37C0;
     8'h3D :
-    data_out <= 16'h4FCA;
+    data_out <= 16'h4FCA;   //AEC设置
     8'h3E :
-    data_out <= 16'h50A8;
+    data_out <= 16'h50A8;   //AEC设置
     8'h3F :
     data_out <= 16'h5A23;
     8'h40 :
@@ -175,15 +175,15 @@ module reg_solve(
     8'h41 :
     data_out <= 16'h3D38;
     8'h42 :
-    data_out <= 16'hFF00;
+    data_out <= 16'hFF00;   //配置寄存器0
     8'h43 :
-    data_out <= 16'hE57F;
+    data_out <= 16'hE57F;   
     8'h44 :
-    data_out <= 16'hF9C0;
+    data_out <= 16'hF9C0;   //微控制器复位，ROM启动选择
     8'h45 :
     data_out <= 16'h4124;
     8'h46 :
-    data_out <= 16'hE014;
+    data_out <= 16'hE014;   //复位
     8'h47 :
     data_out <= 16'h76FF;
     8'h48 :
@@ -195,7 +195,7 @@ module reg_solve(
     8'h4B :
     data_out <= 16'h4C00;
     8'h4C :
-    data_out <= 16'h87D5;
+    data_out <= 16'h87D5;   //模式使能
     8'h4D :
     data_out <= 16'h883F;
     8'h4E :
@@ -203,29 +203,29 @@ module reg_solve(
     8'h4F :
     data_out <= 16'hD910;
     8'h50 :
-    data_out <= 16'hD382;
+    data_out <= 16'hD382;   //配置DVP输出速度
     8'h51 :
     data_out <= 16'hC808;
     8'h52 :
     data_out <= 16'hC980;
     8'h53 :
-    data_out <= 16'h7C00;
+    data_out <= 16'h7C00;   //SDE间接寄存器访问地址
     8'h54 :
-    data_out <= 16'h7D00;
+    data_out <= 16'h7D00;   //SDE间接寄存器访问数据
     8'h55 :
-    data_out <= 16'h7C03;
+    data_out <= 16'h7C03;   //SDE间接寄存器访问地址
     8'h56 :
-    data_out <= 16'h7D48;
+    data_out <= 16'h7D48;   //SDE间接寄存器访问数据
     8'h57 :
-    data_out <= 16'h7D48;
+    data_out <= 16'h7D48;   //SDE间接寄存器访问数据
     8'h58 :
-    data_out <= 16'h7C08;
+    data_out <= 16'h7C08;   //SDE间接寄存器访问地址
     8'h59 :
-    data_out <= 16'h7D20;
+    data_out <= 16'h7D20;   //SDE间接寄存器访问数据
     8'h5A :
-    data_out <= 16'h7D10;
+    data_out <= 16'h7D10;   //SDE间接寄存器访问数据
     8'h5B :
-    data_out <= 16'h7D0E;
+    data_out <= 16'h7D0E;   //SDE间接寄存器访问数据
     8'h5C :
     data_out <= 16'h9000;
     8'h5D :
@@ -317,7 +317,7 @@ module reg_solve(
     8'h88 :
     data_out <= 16'h9700;
     8'h89 :
-    data_out <= 16'hC3ED;
+    data_out <= 16'hC3ED;   //模式使能
     8'h8A :
     data_out <= 16'hA400;
     8'h8B :
@@ -359,13 +359,13 @@ module reg_solve(
     8'h9D :
     data_out <= 16'h8C00;
     8'h9E :
-    data_out <= 16'h863D;
+    data_out <= 16'h863D;   //模式使能
     8'h9F :
     data_out <= 16'h5000;
     8'hA0 :
-    data_out <= 16'h51A0;
+    data_out <= 16'h51A0;   //设置每行像素个数（实际像素 = 寄存器值 * 4）HEX_A0 = DEC_160
     8'hA1 :
-    data_out <= 16'h5278;
+    data_out <= 16'h5278;   //设置每帧的行数（实际行数 = 寄存器值 * 4）HEX_78 = DEC_120
     8'hA2 :
     data_out <= 16'h5300;
     8'hA3 :
@@ -373,28 +373,28 @@ module reg_solve(
     8'hA4 :
     data_out <= 16'h5500;
     8'hA5 :
-    data_out <= 16'h5AA0;
+    data_out <= 16'h5AA0;   //设置每行输出的像素个数
     8'hA6 :
-    data_out <= 16'h5B78;
+    data_out <= 16'h5B78;   //设置每帧输出的行数
     8'hA7 :
     data_out <= 16'h5C00;
     8'hA8 :
     data_out <= 16'hD382;
     8'hA9 :
-    data_out <= 16'hC3ED;
+    data_out <= 16'hC3ED;   //模式使能
     8'hAA :
     data_out <= 16'h7F00;
     8'hAB :
-    data_out <= 16'hDA08;
+    data_out <= 16'hDA08;   //设置图像输出模式，RGB565
     8'hAC :
     data_out <= 16'hE51F;
     8'hAD :
     data_out <= 16'hE167;
     8'hAE :
-    data_out <= 16'hE000;
+    data_out <= 16'hE000;   //复位
     8'hAF :
     data_out <= 16'hDD7F;
     8'hB0 :
-    data_out <= 16'h0500;
+    data_out <= 16'h0500;   //使用DSP进行输出
     endcase
 endmodule

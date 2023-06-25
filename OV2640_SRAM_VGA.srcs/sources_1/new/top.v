@@ -45,6 +45,7 @@ module top(
     output vga_hs_pin,
     output vga_vs_pin,
     output [11:0] vga_data_pin,
+    input change_resolution,
     // LED_test================
     output reg [2:0] led
     );
@@ -81,8 +82,8 @@ module top(
 
 
     always @(posedge clk_100M) begin
-            led[1:0] = {cam_vs,cam_hs};
-            led[2] = write_over;
+            led[1:0] = {cam_vs,cam_hs}; //行同步信号和场同步信号指示灯
+            led[2] = write_over;        //写入完成知识灯
     end
 
 
@@ -97,25 +98,25 @@ module top(
         .sys_clk_in(sys_clk_in));      // input sys_clk_in
 
     vga_show VGA(
-        .clk_100M(clk_100M),
-        .rst(rst),
-        .write_over(write_over),
-        .sram_data(sram_data),
-        .hsync_pin(vga_hs_pin),
-        .vsync_pin(vga_vs_pin),
-        .sram_addr(read_addr),
-        .vga_bgr_data(vga_data_pin)
+        .clk_100M(clk_100M),    //时钟
+        .rst(rst),  //复位
+        .write_over(write_over),//写入完成信号
+        .sram_data(sram_data),  //SRAM的16位数字信号
+        .hsync_pin(vga_hs_pin), //行同步信号
+        .vsync_pin(vga_vs_pin), //场同步信号
+        .sram_addr(read_addr),  //SRAM的19位地址信号
+        .vga_bgr_data(vga_data_pin), //VGA的12位RGB信号
+        .resolution(change_resolution) //改变显示图片分辨率
     );
 
 
     camera CAM_INIT(
-        // .clk(clk_25M),
-        .clk(clk_100M),
-        .rst(rst),
-        .sio_c(cam_SCL),
-        .sio_d(cam_SDA),
-        .reset(cam_rst_n),
-        .pwdn(cam_pwdn)
+        .clk(clk_100M), //时钟
+        .rst(rst),  //复位信号
+        .sio_c(cam_SCL),    //SCCB时钟信号
+        .sio_d(cam_SDA),    //SCCB数据信号
+        .reset(cam_rst_n),  //摄像头复位信号
+        .pwdn(cam_pwdn)     //摄像头掉电信号
     );
 
 
@@ -127,31 +128,30 @@ module top(
         .href(cam_hs), //摄像头传输数据信号
         .vsync(cam_vs),      //摄像头开始/结束传输
         .data_camera(cam_data),     //摄像头传输数据
-        // input [3:0]bluetooth_dealed,   //蓝牙数据
         .data_out(data_out),   //得到的RGB数据
         .write_ready(sram_we_n_write),     //写有效信号
         .write_ce(sram_ce_n_write),   //片选有效信号
         .now_addr(write_addr),  //数据传输地址
         .write_over(write_over), //写入完成信号
-        .key(capture)
+        .key(capture)   //画面捕捉触发信号
         );
 
 
 
     sram_ctrl SRAM_CTRL(
-        .write_over(write_over),
-        .sram_ce_n_write(sram_ce_n_write),
-        .sram_we_n_write(sram_we_n_write),
-        .read_addr(read_addr),
-        .write_addr(write_addr),
-        .write_data(write_data),
-        .sram_data(sram_data),
-        .sram_ub_n(sram_ub_n),
-        .sram_lb_n(sram_lb_n),
-        .sram_ce_n(sram_ce_n),
-        .sram_we_n(sram_we_n),
-        .sram_oe_n(sram_oe_n),
-        .sram_addr(sram_addr)
+        .write_over(write_over),    //写入完成信号
+        .sram_ce_n_write(sram_ce_n_write),  //片选使能(写入控制)
+        .sram_we_n_write(sram_we_n_write),  //写入使能(写入控制)
+        .read_addr(read_addr),      //读出地址
+        .write_addr(write_addr),    //写入地址
+        .write_data(write_data),    //写入数据
+        .sram_data(sram_data),      //SRAM数据接口
+        .sram_ub_n(sram_ub_n),      //SRAM数据高八位使能接口
+        .sram_lb_n(sram_lb_n),      //SRAM数据低八位使能接口
+        .sram_ce_n(sram_ce_n),      //SRAM片选使能接口
+        .sram_we_n(sram_we_n),      //SRAM写入使能接口
+        .sram_oe_n(sram_oe_n),      //SRAM输出使能接口
+        .sram_addr(sram_addr)       //SRAM数据地址接口
         );
 
 

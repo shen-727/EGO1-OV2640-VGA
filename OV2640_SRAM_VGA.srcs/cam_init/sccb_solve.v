@@ -21,22 +21,24 @@
 
 
 module sccb_solve(
-    input clk,
-    input rst,
-    inout sio_d,            //ÉãÏñÍ·sio_dĞÅºÅ
-    output reg sio_c,       //ÉãÏñÍ·sio_cĞÅºÅ
-    input reg_ready,            //¼Ä´æÆ÷ÅäÖÃÊÇ·ñÍê³É
-    output reg sccb_ready=0,    //SCCBĞ­Òé´«ÊäÍê³É
-    input [7:0]data_addr,       //¼Ä´æÆ÷µØÖ·
-    input [7:0]data_in          //¼Ä´æÆ÷Êı¾İ
+    input clk,              //æ—¶é’Ÿä¿¡å·
+    input rst,              //å¤ä½ä¿¡å·
+    inout sio_d,            //æ‘„åƒå¤´sio_dä¿¡å·
+    output reg sio_c,       //æ‘„åƒå¤´sio_cä¿¡å·
+    input reg_ready,            //å¯„å­˜å™¨é…ç½®æ˜¯å¦å®Œæˆ
+    output sccb_ready,    //SCCBåè®®ä¼ è¾“å®Œæˆ
+    // output reg sccb_ready=0,    //SCCBåè®®ä¼ è¾“å®Œæˆ
+    input [7:0]data_addr,       //å¯„å­˜å™¨åœ°å€
+    input [7:0]data_in          //å¯„å­˜å™¨æ•°æ®
 );
 
     reg[16:0] wait_time=0;
     reg[9:0] time_wait=10'b1000000000;
     reg[11:0] time_wait_long=12'b100000000000;
 
+
     reg [3:0] stat=0;
-    reg [4:0] nxt_stat=0;
+    reg [4:0] next_stat=0;
     reg [8:0] change_time=0;
 
     parameter stat_prepare=0;
@@ -52,7 +54,7 @@ module sccb_solve(
 
     reg [31:0] data_temp;
     reg sio_d_send;
-    always @ (posedge clk)
+    always @ (posedge clk or posedge rst)
     begin
         if(rst)
         begin
@@ -77,7 +79,7 @@ module sccb_solve(
                     change_time<=2;
                     wait_time<=time_wait_long;
                     stat<=stat_wait;
-                    nxt_stat<=stat_begin2;
+                    next_stat<=stat_begin2;
                     sio_c<=1;
                 end 
                 stat_begin2:
@@ -85,7 +87,7 @@ module sccb_solve(
                     data_temp<={data_temp[30:0],1'b1};
                     wait_time<=time_wait*3;
                     stat<=stat_wait;
-                    nxt_stat<=stat_change3;
+                    next_stat<=stat_change3;
                     sio_c<=1;
                 end
 
@@ -100,23 +102,23 @@ module sccb_solve(
                     wait_time<=time_wait;
                     stat<=stat_wait;
                     if(change_time==29)
-                        nxt_stat<=stat_end1;
+                        next_stat<=stat_end1;
                     else
-                        nxt_stat<=stat_change2;
+                        next_stat<=stat_change2;
                     sio_c<=0;
                 end
                 stat_change2:
                 begin
                     wait_time<=time_wait*2;
                     stat<=stat_wait;
-                    nxt_stat<=stat_change3;
+                    next_stat<=stat_change3;
                     sio_c<=1;
                 end
                 stat_change3:
                 begin
                     wait_time<=time_wait;
                     stat<=stat_wait;
-                    nxt_stat<=stat_change1;
+                    next_stat<=stat_change1;
                     sio_c<=0;
                 end
 
@@ -124,7 +126,7 @@ module sccb_solve(
                 begin
                     wait_time<=time_wait*3;
                     stat<=stat_wait;
-                    nxt_stat<=stat_end2;
+                    next_stat<=stat_end2;
                     sio_c<=1;
                 end
                 stat_end2:
@@ -132,7 +134,7 @@ module sccb_solve(
                     data_temp<={data_temp[30:0],1'b1};
                     wait_time<=time_wait_long;
                     stat<=stat_wait;
-                    nxt_stat<=stat_end3;
+                    next_stat<=stat_end3;
                     sio_c<=1;
                 end
                 stat_end3:
@@ -140,14 +142,14 @@ module sccb_solve(
                     data_temp<={data_temp[30:0],1'b1};
                     wait_time<=time_wait_long;
                     stat<=stat_wait;
-                    nxt_stat<=stat_prepare;
+                    next_stat<=stat_prepare;
                     sio_c<=1;
                 end
 
                 stat_wait:
                 begin
                     if(wait_time==0)
-                        stat<=nxt_stat;
+                        stat<=next_stat;
                     else
                         wait_time<=wait_time-1;
                 end
@@ -155,10 +157,12 @@ module sccb_solve(
         end
     end
 
-    always @ (posedge clk)
-    begin
-        sccb_ready<=(stat==stat_prepare)&&(reg_ready==1);
-    end
+    assign   sccb_ready = (stat==stat_prepare)&&(reg_ready==1);
+
+    // always @ (posedge clk)
+    // begin
+    //     sccb_ready<=(stat==stat_prepare)&&(reg_ready==1);
+    // end
 
     assign sio_d=sio_d_send?data_temp[31]:'bz;
 endmodule

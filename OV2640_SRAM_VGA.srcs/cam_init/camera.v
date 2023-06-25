@@ -32,7 +32,7 @@ module camera(
     assign pwdn=0;
     wire [15:0] data_send;
     wire reg_ready,sccb_ready;
-    reg_solve init(.clk(clk),.rst(rst),.data_out(data_send),.reg_ready(reg_ready),.sccb_ready(sccb_ready));
-    sccb_solve sender(.clk(clk),.rst(rst),.sio_d(sio_d),.sio_c(sio_c),.reg_ready(reg_ready),.sccb_ready(sccb_ready),.data_addr(data_send[15:8]),.data_in(data_send[7:0]));
+    reg_solve INIT(.clk(clk),.rst(rst),.data_out(data_send),.reg_ready(reg_ready),.sccb_ready(sccb_ready));
+    sccb_solve SCCB_WRITE(.clk(clk),.rst(rst),.sio_d(sio_d),.sio_c(sio_c),.reg_ready(reg_ready),.sccb_ready(sccb_ready),.data_addr(data_send[15:8]),.data_in(data_send[7:0]));
 
 endmodule

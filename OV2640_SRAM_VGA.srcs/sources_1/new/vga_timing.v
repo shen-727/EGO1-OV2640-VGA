@@ -21,13 +21,13 @@
 
 
 module vga_timing(
-    input vga_clk,
-    input rst,
-    output hsync,
-    output vsync,
-    output valid,
-    output [9:0] h_cnt,
-    output [9:0] v_cnt
+    input vga_clk,  //25MHz时钟信号
+    input rst,      //复位信号
+    output hsync,   //行同步信号
+    output vsync,   //场同步信号
+    output valid,   //像素有效信号
+    output [9:0] h_cnt, //当前像素列位置
+    output [9:0] v_cnt  //当前像素行位置
     );
     parameter    h_frontporch = 96;
     parameter    h_active = 144;

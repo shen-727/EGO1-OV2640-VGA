@@ -26,8 +26,7 @@ module getpic (
     input href, //摄像头传输数据信号
     input vsync,      //摄像头开始/结束传输
     input [7:0]data_camera,     //摄像头传输数据
-    input key,
-    // input [3:0]bluetooth_dealed,   //蓝牙数据
+    input key,  //按键输入，按键按下并释放后开始捕获图像
     output reg[11:0]data_out,   //得到的RGB数据
     output reg write_ready,     //写有效信号
     output reg write_ce,        //sram片选使能信号

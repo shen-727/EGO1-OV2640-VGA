@@ -21,20 +21,20 @@
 
 
 module data_gen_test(
-    input clk_100M,
-    input rst,
-    output write_over,
-    output reg sram_ce_n,
-    output reg sram_we_n,
-    output reg [18:0] write_addr,
-    output reg [15:0] write_data
+    input clk_100M,         //时钟信号
+    input rst,              //复位信号
+    output write_over,      //写入完成信号
+    output reg sram_ce_n,   //SRAM片选使能信号
+    output reg sram_we_n,   //SRAM写入使能信号
+    output reg [18:0] write_addr,   //SRAM写入地址
+    output reg [15:0] write_data    //SRAM写入数据
     );
 
-    assign write_over = (write_addr == 19'd12_00_11);
+    assign write_over = (write_addr == 19'd12_00_11);   //当写入12_00_00个像素点数据后，代表写入完成
 
-    parameter   WAIT_SIGN           = 3'd0,
-                ADDR_DATA_CHANGE    = 3'd1,
-                WRITE_ENABLE        = 3'd2;
+    parameter   WAIT_SIGN           = 3'd0, //等待写入信号
+                ADDR_DATA_CHANGE    = 3'd1, //改变写入地址
+                WRITE_ENABLE        = 3'd2; //写入使能
 
     reg [2:0] present_status,next_status;
 

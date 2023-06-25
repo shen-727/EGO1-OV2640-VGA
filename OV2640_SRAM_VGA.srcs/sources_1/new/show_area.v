@@ -28,13 +28,18 @@ module show_area(
     input [9:0]v_cnt,
     input [15:0] sram_data,
     output reg [19:0] sram_addr,
-    output [11:0] vga_bgr_data
+    output [11:0] vga_bgr_data,
+    input resolution
     );
 
-    wire is_area;
+    wire is_area,area1,area2;
     reg [11:0] vgr_data;
+    reg [11:0] counter = 0;
 
-    assign is_area = (h_cnt>120)&&(h_cnt<=520)&&(v_cnt>90)&&(v_cnt<=390);
+    assign area1 = (h_cnt>120)&&(h_cnt<=520)&&(v_cnt>90)&&(v_cnt<=390);
+    assign area2 = (h_cnt>220)&&(h_cnt<=420)&&(v_cnt>165)&&(v_cnt<=315);
+
+    assign is_area = resolution ? area2 : area1;
 
     assign vga_bgr_data = write_over ? vgr_data : 12'b0;
 
@@ -42,7 +47,15 @@ module show_area(
         if (valid) begin
             if (is_area) begin
                 // sram_addr <= sram_addr + 1;
-                sram_addr <= sram_addr - 1;
+                // sram_addr <= sram_addr - 1;
+                if(resolution && counter == 12'd200 - 1)begin
+                    sram_addr <= sram_addr - 402;
+                    counter <= 0;
+                end
+                else begin
+                    counter <= counter + 1;
+                    sram_addr <= sram_addr - 1 - resolution;
+                end
                 // vgr_data <= {sram_data[4:1],sram_data[10:7],sram_data[15:12]};
                 vgr_data <= sram_data[11:0];
             end

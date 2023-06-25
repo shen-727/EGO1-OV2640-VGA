@@ -21,20 +21,21 @@
 
 
 module vga_show(
-    input clk_100M,
-    input rst,
-    input write_over,
-    input [15:0] sram_data,
-    output hsync_pin,
-    output vsync_pin,
-    output [18:0] sram_addr,
-    output [11:0] vga_bgr_data
+    input clk_100M, //100MHz系统时钟
+    input rst,      //复位信号
+    input write_over,   //写入完成信号
+    input [15:0] sram_data, //SRAM读出数据
+    output hsync_pin,   //行同步信号接口
+    output vsync_pin,   //场同步信号接口
+    output [18:0] sram_addr,    //SRAM读出地址
+    output [11:0] vga_bgr_data,  //VGA显示像素RGB信息
+    input resolution    //改变VGA显示图像的分辨率。0:400*300;1:200:150
     );
 
-    wire vga_clk;
-    wire valid;
-    wire [9:0]h_cnt;
-    wire [9:0]v_cnt;
+    wire vga_clk;   //25MHz时钟信号
+    wire valid;     //像素有效信号
+    wire [9:0]h_cnt;    //当前像素的列位置
+    wire [9:0]v_cnt;    //当前像素的行位置
 
     // reg [1:0] counter ;
     // // 生成25MHz时钟，用于VGA显示
@@ -76,7 +77,8 @@ module vga_show(
         .v_cnt(v_cnt),
         .sram_data(sram_data),
         .sram_addr(sram_addr),
-        .vga_bgr_data(vga_bgr_data)
+        .vga_bgr_data(vga_bgr_data),
+        .resolution(resolution)
     );
 
 endmodule

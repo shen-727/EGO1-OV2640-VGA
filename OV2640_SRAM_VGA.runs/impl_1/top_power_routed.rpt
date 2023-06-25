@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Sun Jun 11 14:31:01 2023
+| Date             : Sun Jun 25 14:42:07 2023
 | Host             : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        5 |       --- |             --- |
-| Slice Logic    |    <0.001 |      529 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      197 |     20800 |            0.95 |
-|   CARRY4       |    <0.001 |       17 |      8150 |            0.21 |
-|   Register     |    <0.001 |      234 |     41600 |            0.56 |
+| Slice Logic    |    <0.001 |      609 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      246 |     20800 |            1.18 |
+|   CARRY4       |    <0.001 |       25 |      8150 |            0.31 |
+|   Register     |    <0.001 |      245 |     41600 |            0.59 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |    <0.001 |      430 |       --- |             --- |
+| Signals        |    <0.001 |      511 |       --- |             --- |
 | Block RAM      |    <0.001 |      0.5 |        50 |            1.00 |
 | PLL            |     0.103 |        1 |         5 |           20.00 |
-| I/O            |     0.010 |       75 |       210 |           35.71 |
+| I/O            |     0.011 |       76 |       210 |           36.19 |
 | Static Power   |     0.072 |          |           |                 |
 | Total          |     0.189 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
@@ -142,14 +142,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+------------+-----------+
-| Name       | Power (W) |
-+------------+-----------+
-| top        |     0.117 |
-|   CAM_INIT |     0.002 |
-|     sender |     0.002 |
-|   PLL      |     0.104 |
-|     inst   |     0.104 |
-+------------+-----------+
++----------------+-----------+
+| Name           | Power (W) |
++----------------+-----------+
+| top            |     0.117 |
+|   CAM_INIT     |     0.002 |
+|     SCCB_WRITE |     0.002 |
+|   PLL          |     0.104 |
+|     inst       |     0.104 |
++----------------+-----------+
 
 
