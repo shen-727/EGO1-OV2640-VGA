@@ -1,0 +1,17 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/camera.v,1687612949,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/get_pic/getpic.v,,camera,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/reg_solve.v,1687250077,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/sccb_solve.v,,reg_solve,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/sccb_solve.v,1687674121,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new/sccb_sim.v,,sccb_solve,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/get_pic/getpic.v,1687159686,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/reg_solve.v,,getpic,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new/sccb_sim.v,1687674405,verilog,,,,sccb_sim,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock/pll_clock.v,1686880065,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/camera.v,,pll_clock,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock/pll_clock_clk_wiz.v,1686880065,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock/pll_clock.v,,pll_clock_clk_wiz,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/show_area.v,1687654508,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/sram_ctrl.v,,show_area,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/sram_ctrl.v,1686880065,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/vga_show.v,,sram_ctrl,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/top.v,1687652619,verilog,,,,top,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/vga_show.v,1687655063,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/vga_timing.v,,vga_clk_gen;vga_show,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,
+C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/vga_timing.v,1687159325,verilog,,C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/top.v,,vga_timing,,,../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock,,,,,

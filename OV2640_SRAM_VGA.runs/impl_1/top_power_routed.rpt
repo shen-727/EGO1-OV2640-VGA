@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Sun Jun 11 14:31:01 2023
+| Date             : Sun Jun 25 21:35:34 2023
 | Host             : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.189        |
+| Total On-Chip Power (W)  | 0.193        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.117        |
+| Dynamic (W)              | 0.121        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.8          |
 | Max Ambient (C)          | 84.1         |
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        5 |       --- |             --- |
-| Slice Logic    |    <0.001 |      529 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      197 |     20800 |            0.95 |
-|   CARRY4       |    <0.001 |       17 |      8150 |            0.21 |
-|   Register     |    <0.001 |      234 |     41600 |            0.56 |
+| Slice Logic    |     0.001 |      660 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      284 |     20800 |            1.37 |
+|   CARRY4       |    <0.001 |       25 |      8150 |            0.31 |
+|   Register     |    <0.001 |      246 |     41600 |            0.59 |
 |   BUFG         |    <0.001 |        2 |        32 |            6.25 |
-|   Others       |     0.000 |       14 |       --- |             --- |
-| Signals        |    <0.001 |      430 |       --- |             --- |
+|   Others       |     0.000 |       17 |       --- |             --- |
+| Signals        |    <0.001 |      510 |       --- |             --- |
 | Block RAM      |    <0.001 |      0.5 |        50 |            1.00 |
 | PLL            |     0.103 |        1 |         5 |           20.00 |
-| I/O            |     0.010 |       75 |       210 |           35.71 |
+| I/O            |     0.014 |       77 |       210 |           36.67 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.189 |          |           |                 |
+| Total          |     0.193 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,9 +74,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.023 |       0.013 |      0.010 |
+| Vccint    |       1.000 |     0.024 |       0.014 |      0.010 |
 | Vccaux    |       1.800 |     0.065 |       0.052 |      0.013 |
-| Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |
+| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -142,14 +142,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+------------+-----------+
-| Name       | Power (W) |
-+------------+-----------+
-| top        |     0.117 |
-|   CAM_INIT |     0.002 |
-|     sender |     0.002 |
-|   PLL      |     0.104 |
-|     inst   |     0.104 |
-+------------+-----------+
++----------------+-----------+
+| Name           | Power (W) |
++----------------+-----------+
+| top            |     0.121 |
+|   CAM_INIT     |     0.002 |
+|     SCCB_WRITE |     0.002 |
+|   PLL          |     0.104 |
+|     inst       |     0.104 |
++----------------+-----------+
 
 

@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../OV2640_SRAM_VGA.srcs/sources_1/ip/pll_clock" \
+"../../../../OV2640_SRAM_VGA.srcs/sources_1/new/show_area.v" \
+"../../../../OV2640_SRAM_VGA.srcs/sources_1/new/vga_timing.v" \
+"../../../../OV2640_SRAM_VGA.srcs/sources_1/new/vga_show.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

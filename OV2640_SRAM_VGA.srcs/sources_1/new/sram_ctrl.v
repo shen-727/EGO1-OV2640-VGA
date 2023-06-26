@@ -39,15 +39,10 @@ module sram_ctrl(
     assign sram_data = write_over ? 16'bz : write_data;
     assign sram_addr = write_over ? read_addr : write_addr;
     assign sram_oe_n = write_over ? 1'b0 : 1'b1;
-    // assign sram_oe_n = (~ write_over);
     assign sram_ce_n = write_over ? 1'b0 : sram_ce_n_write;
-    // assign sram_ce_n = (~ write_over) & sram_ce_n_write;
     assign sram_we_n = write_over ? 1'b1 : sram_we_n_write;
-    // assign sram_we_n = write_over | sram_we_n_write;
 
     assign sram_lb_n = 1'b0;
     assign sram_ub_n = 1'b0;
-
-
 
 endmodule

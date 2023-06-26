@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/cam_init/sccb_solve.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sccb_solve
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new/sccb_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sccb_sim

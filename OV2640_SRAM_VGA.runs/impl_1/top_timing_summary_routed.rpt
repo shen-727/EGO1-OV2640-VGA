@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sun Jun 11 14:31:01 2023
+| Date         : Sun Jun 25 21:35:34 2023
 | Host         : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -file top_timing_summary_routed.rpt -pb top_timing_summary_routed.pb -rpx top_timing_summary_routed.rpx -warn_on_violation
 | Design       : top
@@ -53,11 +53,17 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 92 register/latch pins with no clock driven by root clock pin: cam_pclk (HIGH)
+ There are 89 register/latch pins with no clock driven by root clock pin: cam_pclk (HIGH)
 
- There are 51 register/latch pins with no clock driven by root clock pin: VGA/VGA_CLK_GEN/counter_reg[0]/Q (HIGH)
+ There is 1 register/latch pin with no clock driven by root clock pin: cam_vs (HIGH)
 
- There are 51 register/latch pins with no clock driven by root clock pin: VGA/VGA_CLK_GEN/counter_reg[1]/Q (HIGH)
+ There is 1 register/latch pin with no clock driven by root clock pin: capture (HIGH)
+
+ There is 1 register/latch pin with no clock driven by root clock pin: PLL/inst/plle2_adv_inst/LOCKED (HIGH)
+
+ There are 63 register/latch pins with no clock driven by root clock pin: VGA/VGA_CLK_GEN/counter_reg[0]/Q (HIGH)
+
+ There are 63 register/latch pins with no clock driven by root clock pin: VGA/VGA_CLK_GEN/counter_reg[1]/Q (HIGH)
 
 
 2. checking constant_clock
@@ -72,21 +78,21 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 372 pins that are not constrained for maximum delay. (HIGH)
+ There are 407 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 23 input ports with no input delay specified. (HIGH)
+ There are 24 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 57 ports with no output delay specified. (HIGH)
+ There are 58 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -131,7 +137,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      5.613        0.000                      0                  186        0.109        0.000                      0                  186        3.000        0.000                       0                    98  
+      5.699        0.000                      0                  187        0.163        0.000                      0                  187        3.000        0.000                       0                   100  
 
 
 All user specified timing constraints are met.
@@ -157,7 +163,7 @@ sys_clk_in            {0.000 5.000}      10.000          100.000
 Clock                     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----                     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
 sys_clk_in                                                                                                                                                              3.000        0.000                       0                     1  
-  clk_100M_pll_clock        5.613        0.000                      0                  186        0.109        0.000                      0                  186        4.500        0.000                       0                    94  
+  clk_100M_pll_clock        5.699        0.000                      0                  187        0.163        0.000                      0                  187        4.500        0.000                       0                    96  
   clkfbout_pll_clock                                                                                                                                                    7.845        0.000                       0                     3  
 
 
@@ -216,156 +222,24 @@ High Pulse Width  Fast    PLLE2_ADV/CLKIN1  n/a            2.000         5.000  
 From Clock:  clk_100M_pll_clock
   To Clock:  clk_100M_pll_clock
 
-Setup :            0  Failing Endpoints,  Worst Slack        5.613ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.109ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        5.699ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.163ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             5.613ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/stat_reg[1]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.699ns  (required time - arrival time)
+  Source:                 CAM_INIT/INIT/count_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg[0]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.999ns  (logic 1.022ns (25.554%)  route 2.977ns (74.446%))
-  Logic Levels:           3  (LUT4=1 LUT5=2)
-  Clock Path Skew:        -0.105ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.054ns = ( 7.946 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.377ns
-    Clock Pessimism Removal (CPR):    -0.428ns
-  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.138ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.621    -2.377    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y59          FDRE (Prop_fdre_C_Q)         0.478    -1.899 f  CAM_INIT/sender/wait_time_reg[4]/Q
-                         net (fo=3, routed)           0.824    -1.075    CAM_INIT/sender/wait_time[4]
-    SLICE_X5Y59          LUT4 (Prop_lut4_I1_O)        0.296    -0.779 f  CAM_INIT/sender/stat[3]_i_6/O
-                         net (fo=2, routed)           0.824     0.046    CAM_INIT/sender/stat[3]_i_6_n_0
-    SLICE_X7Y58          LUT5 (Prop_lut5_I3_O)        0.124     0.170 r  CAM_INIT/sender/stat[3]_i_3/O
-                         net (fo=5, routed)           0.602     0.771    CAM_INIT/sender/stat[3]_i_3_n_0
-    SLICE_X10Y59         LUT5 (Prop_lut5_I3_O)        0.124     0.895 r  CAM_INIT/sender/stat[3]_i_1/O
-                         net (fo=4, routed)           0.727     1.622    CAM_INIT/sender/stat[3]_i_1_n_0
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[1]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                     10.000    10.000 r  
-    P17                                               0.000    10.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.438     7.946    CAM_INIT/sender/clk_100M
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[1]/C
-                         clock pessimism             -0.428     7.518    
-                         clock uncertainty           -0.077     7.441    
-    SLICE_X9Y59          FDRE (Setup_fdre_C_CE)      -0.205     7.236    CAM_INIT/sender/stat_reg[1]
-  -------------------------------------------------------------------
-                         required time                          7.236    
-                         arrival time                          -1.622    
-  -------------------------------------------------------------------
-                         slack                                  5.613    
-
-Slack (MET) :             5.613ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/stat_reg[2]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.999ns  (logic 1.022ns (25.554%)  route 2.977ns (74.446%))
-  Logic Levels:           3  (LUT4=1 LUT5=2)
-  Clock Path Skew:        -0.105ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.054ns = ( 7.946 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.377ns
-    Clock Pessimism Removal (CPR):    -0.428ns
-  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.138ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.621    -2.377    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y59          FDRE (Prop_fdre_C_Q)         0.478    -1.899 f  CAM_INIT/sender/wait_time_reg[4]/Q
-                         net (fo=3, routed)           0.824    -1.075    CAM_INIT/sender/wait_time[4]
-    SLICE_X5Y59          LUT4 (Prop_lut4_I1_O)        0.296    -0.779 f  CAM_INIT/sender/stat[3]_i_6/O
-                         net (fo=2, routed)           0.824     0.046    CAM_INIT/sender/stat[3]_i_6_n_0
-    SLICE_X7Y58          LUT5 (Prop_lut5_I3_O)        0.124     0.170 r  CAM_INIT/sender/stat[3]_i_3/O
-                         net (fo=5, routed)           0.602     0.771    CAM_INIT/sender/stat[3]_i_3_n_0
-    SLICE_X10Y59         LUT5 (Prop_lut5_I3_O)        0.124     0.895 r  CAM_INIT/sender/stat[3]_i_1/O
-                         net (fo=4, routed)           0.727     1.622    CAM_INIT/sender/stat[3]_i_1_n_0
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[2]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                     10.000    10.000 r  
-    P17                                               0.000    10.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.438     7.946    CAM_INIT/sender/clk_100M
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[2]/C
-                         clock pessimism             -0.428     7.518    
-                         clock uncertainty           -0.077     7.441    
-    SLICE_X9Y59          FDRE (Setup_fdre_C_CE)      -0.205     7.236    CAM_INIT/sender/stat_reg[2]
-  -------------------------------------------------------------------
-                         required time                          7.236    
-                         arrival time                          -1.622    
-  -------------------------------------------------------------------
-                         slack                                  5.613    
-
-Slack (MET) :             5.867ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/wait_time_reg[16]/D
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        4.136ns  (logic 2.176ns (52.606%)  route 1.960ns (47.394%))
-  Logic Levels:           6  (CARRY4=4 LUT1=1 LUT3=1)
+  Data Path Delay:        3.814ns  (logic 0.854ns (22.389%)  route 2.960ns (77.611%))
+  Logic Levels:           3  (LUT5=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
     Source Clock Delay      (SCD):    -2.376ns
@@ -387,28 +261,18 @@ Slack (MET) :             5.867ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.622    -2.376    CAM_INIT/sender/clk_100M
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[2]/C
+                         net (fo=94, routed)          1.622    -2.376    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y58          FDRE (Prop_fdre_C_Q)         0.478    -1.898 f  CAM_INIT/sender/wait_time_reg[2]/Q
-                         net (fo=3, routed)           1.009    -0.889    CAM_INIT/sender/wait_time[2]
-    SLICE_X4Y58          LUT1 (Prop_lut1_I0_O)        0.301    -0.588 r  CAM_INIT/sender/wait_time0_carry_i_3/O
-                         net (fo=1, routed)           0.000    -0.588    CAM_INIT/sender/wait_time0_carry_i_3_n_0
-    SLICE_X4Y58          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    -0.038 r  CAM_INIT/sender/wait_time0_carry/CO[3]
-                         net (fo=1, routed)           0.000    -0.038    CAM_INIT/sender/wait_time0_carry_n_0
-    SLICE_X4Y59          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.076 r  CAM_INIT/sender/wait_time0_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     0.076    CAM_INIT/sender/wait_time0_carry__0_n_0
-    SLICE_X4Y60          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.190 r  CAM_INIT/sender/wait_time0_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     0.190    CAM_INIT/sender/wait_time0_carry__1_n_0
-    SLICE_X4Y61          CARRY4 (Prop_carry4_CI_O[3])
-                                                      0.313     0.503 r  CAM_INIT/sender/wait_time0_carry__2/O[3]
-                         net (fo=1, routed)           0.952     1.455    CAM_INIT/sender/wait_time0[16]
-    SLICE_X6Y58          LUT3 (Prop_lut3_I0_O)        0.306     1.761 r  CAM_INIT/sender/wait_time[16]_i_2/O
-                         net (fo=1, routed)           0.000     1.761    CAM_INIT/sender/p_1_in[16]
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[16]/D
+    SLICE_X5Y58          FDCE (Prop_fdce_C_Q)         0.456    -1.920 f  CAM_INIT/INIT/count_reg[0]/Q
+                         net (fo=9, routed)           0.858    -1.062    CAM_INIT/INIT/count_reg[0]
+    SLICE_X4Y59          LUT6 (Prop_lut6_I0_O)        0.124    -0.938 f  CAM_INIT/INIT/data_out_reg_i_2/O
+                         net (fo=1, routed)           0.435    -0.502    CAM_INIT/INIT/data_out_reg_i_2_n_0
+    SLICE_X2Y59          LUT6 (Prop_lut6_I2_O)        0.124    -0.378 r  CAM_INIT/INIT/data_out_reg_i_1/O
+                         net (fo=5, routed)           0.845     0.467    CAM_INIT/SCCB_WRITE/count_reg[0]
+    SLICE_X2Y61          LUT5 (Prop_lut5_I0_O)        0.150     0.617 r  CAM_INIT/SCCB_WRITE/count_rep[7]_i_1/O
+                         net (fo=20, routed)          0.821     1.438    CAM_INIT/INIT/E[0]
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -421,159 +285,27 @@ Slack (MET) :             5.867ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.506     8.014    CAM_INIT/sender/clk_100M
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[16]/C
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
                          clock pessimism             -0.390     7.624    
                          clock uncertainty           -0.077     7.547    
-    SLICE_X6Y58          FDRE (Setup_fdre_C_D)        0.081     7.628    CAM_INIT/sender/wait_time_reg[16]
+    SLICE_X5Y58          FDCE (Setup_fdce_C_CE)      -0.409     7.138    CAM_INIT/INIT/count_reg[0]
   -------------------------------------------------------------------
-                         required time                          7.628    
-                         arrival time                          -1.761    
+                         required time                          7.138    
+                         arrival time                          -1.438    
   -------------------------------------------------------------------
-                         slack                                  5.867    
+                         slack                                  5.699    
 
-Slack (MET) :             5.918ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/stat_reg[0]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.699ns  (required time - arrival time)
+  Source:                 CAM_INIT/INIT/count_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg[1]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.695ns  (logic 1.022ns (27.656%)  route 2.673ns (72.344%))
-  Logic Levels:           3  (LUT4=1 LUT5=2)
-  Clock Path Skew:        -0.104ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.053ns = ( 7.947 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.377ns
-    Clock Pessimism Removal (CPR):    -0.428ns
-  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.138ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.621    -2.377    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y59          FDRE (Prop_fdre_C_Q)         0.478    -1.899 f  CAM_INIT/sender/wait_time_reg[4]/Q
-                         net (fo=3, routed)           0.824    -1.075    CAM_INIT/sender/wait_time[4]
-    SLICE_X5Y59          LUT4 (Prop_lut4_I1_O)        0.296    -0.779 f  CAM_INIT/sender/stat[3]_i_6/O
-                         net (fo=2, routed)           0.824     0.046    CAM_INIT/sender/stat[3]_i_6_n_0
-    SLICE_X7Y58          LUT5 (Prop_lut5_I3_O)        0.124     0.170 r  CAM_INIT/sender/stat[3]_i_3/O
-                         net (fo=5, routed)           0.602     0.771    CAM_INIT/sender/stat[3]_i_3_n_0
-    SLICE_X10Y59         LUT5 (Prop_lut5_I3_O)        0.124     0.895 r  CAM_INIT/sender/stat[3]_i_1/O
-                         net (fo=4, routed)           0.423     1.319    CAM_INIT/sender/stat[3]_i_1_n_0
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[0]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                     10.000    10.000 r  
-    P17                                               0.000    10.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.439     7.947    CAM_INIT/sender/clk_100M
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[0]/C
-                         clock pessimism             -0.428     7.519    
-                         clock uncertainty           -0.077     7.442    
-    SLICE_X11Y59         FDRE (Setup_fdre_C_CE)      -0.205     7.237    CAM_INIT/sender/stat_reg[0]
-  -------------------------------------------------------------------
-                         required time                          7.237    
-                         arrival time                          -1.319    
-  -------------------------------------------------------------------
-                         slack                                  5.918    
-
-Slack (MET) :             5.918ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/stat_reg[3]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.695ns  (logic 1.022ns (27.656%)  route 2.673ns (72.344%))
-  Logic Levels:           3  (LUT4=1 LUT5=2)
-  Clock Path Skew:        -0.104ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.053ns = ( 7.947 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.377ns
-    Clock Pessimism Removal (CPR):    -0.428ns
-  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
-    Total System Jitter     (TSJ):    0.071ns
-    Discrete Jitter          (DJ):    0.138ns
-    Phase Error              (PE):    0.000ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.621    -2.377    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[4]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y59          FDRE (Prop_fdre_C_Q)         0.478    -1.899 f  CAM_INIT/sender/wait_time_reg[4]/Q
-                         net (fo=3, routed)           0.824    -1.075    CAM_INIT/sender/wait_time[4]
-    SLICE_X5Y59          LUT4 (Prop_lut4_I1_O)        0.296    -0.779 f  CAM_INIT/sender/stat[3]_i_6/O
-                         net (fo=2, routed)           0.824     0.046    CAM_INIT/sender/stat[3]_i_6_n_0
-    SLICE_X7Y58          LUT5 (Prop_lut5_I3_O)        0.124     0.170 r  CAM_INIT/sender/stat[3]_i_3/O
-                         net (fo=5, routed)           0.602     0.771    CAM_INIT/sender/stat[3]_i_3_n_0
-    SLICE_X10Y59         LUT5 (Prop_lut5_I3_O)        0.124     0.895 r  CAM_INIT/sender/stat[3]_i_1/O
-                         net (fo=4, routed)           0.423     1.319    CAM_INIT/sender/stat[3]_i_1_n_0
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[3]/CE
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                     10.000    10.000 r  
-    P17                                               0.000    10.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.439     7.947    CAM_INIT/sender/clk_100M
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[3]/C
-                         clock pessimism             -0.428     7.519    
-                         clock uncertainty           -0.077     7.442    
-    SLICE_X11Y59         FDRE (Setup_fdre_C_CE)      -0.205     7.237    CAM_INIT/sender/stat_reg[3]
-  -------------------------------------------------------------------
-                         required time                          7.237    
-                         arrival time                          -1.319    
-  -------------------------------------------------------------------
-                         slack                                  5.918    
-
-Slack (MET) :             5.936ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/wait_time_reg[15]/D
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Setup (Max at Slow Process Corner)
-  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        4.064ns  (logic 2.098ns (51.626%)  route 1.966ns (48.374%))
-  Logic Levels:           6  (CARRY4=4 LUT1=1 LUT3=1)
+  Data Path Delay:        3.814ns  (logic 0.854ns (22.389%)  route 2.960ns (77.611%))
+  Logic Levels:           3  (LUT5=1 LUT6=2)
   Clock Path Skew:        0.000ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
     Source Clock Delay      (SCD):    -2.376ns
@@ -595,28 +327,18 @@ Slack (MET) :             5.936ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.622    -2.376    CAM_INIT/sender/clk_100M
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[2]/C
+                         net (fo=94, routed)          1.622    -2.376    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y58          FDRE (Prop_fdre_C_Q)         0.478    -1.898 f  CAM_INIT/sender/wait_time_reg[2]/Q
-                         net (fo=3, routed)           1.009    -0.889    CAM_INIT/sender/wait_time[2]
-    SLICE_X4Y58          LUT1 (Prop_lut1_I0_O)        0.301    -0.588 r  CAM_INIT/sender/wait_time0_carry_i_3/O
-                         net (fo=1, routed)           0.000    -0.588    CAM_INIT/sender/wait_time0_carry_i_3_n_0
-    SLICE_X4Y58          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    -0.038 r  CAM_INIT/sender/wait_time0_carry/CO[3]
-                         net (fo=1, routed)           0.000    -0.038    CAM_INIT/sender/wait_time0_carry_n_0
-    SLICE_X4Y59          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.076 r  CAM_INIT/sender/wait_time0_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     0.076    CAM_INIT/sender/wait_time0_carry__0_n_0
-    SLICE_X4Y60          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.190 r  CAM_INIT/sender/wait_time0_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     0.190    CAM_INIT/sender/wait_time0_carry__1_n_0
-    SLICE_X4Y61          CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     0.429 r  CAM_INIT/sender/wait_time0_carry__2/O[2]
-                         net (fo=1, routed)           0.957     1.386    CAM_INIT/sender/wait_time0[15]
-    SLICE_X6Y58          LUT3 (Prop_lut3_I0_O)        0.302     1.688 r  CAM_INIT/sender/wait_time[15]_i_1/O
-                         net (fo=1, routed)           0.000     1.688    CAM_INIT/sender/p_1_in[15]
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[15]/D
+    SLICE_X5Y58          FDCE (Prop_fdce_C_Q)         0.456    -1.920 f  CAM_INIT/INIT/count_reg[0]/Q
+                         net (fo=9, routed)           0.858    -1.062    CAM_INIT/INIT/count_reg[0]
+    SLICE_X4Y59          LUT6 (Prop_lut6_I0_O)        0.124    -0.938 f  CAM_INIT/INIT/data_out_reg_i_2/O
+                         net (fo=1, routed)           0.435    -0.502    CAM_INIT/INIT/data_out_reg_i_2_n_0
+    SLICE_X2Y59          LUT6 (Prop_lut6_I2_O)        0.124    -0.378 r  CAM_INIT/INIT/data_out_reg_i_1/O
+                         net (fo=5, routed)           0.845     0.467    CAM_INIT/SCCB_WRITE/count_reg[0]
+    SLICE_X2Y61          LUT5 (Prop_lut5_I0_O)        0.150     0.617 r  CAM_INIT/SCCB_WRITE/count_rep[7]_i_1/O
+                         net (fo=20, routed)          0.821     1.438    CAM_INIT/INIT/E[0]
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[1]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -629,27 +351,27 @@ Slack (MET) :             5.936ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.506     8.014    CAM_INIT/sender/clk_100M
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[15]/C
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[1]/C
                          clock pessimism             -0.390     7.624    
                          clock uncertainty           -0.077     7.547    
-    SLICE_X6Y58          FDRE (Setup_fdre_C_D)        0.077     7.624    CAM_INIT/sender/wait_time_reg[15]
+    SLICE_X5Y58          FDCE (Setup_fdce_C_CE)      -0.409     7.138    CAM_INIT/INIT/count_reg[1]
   -------------------------------------------------------------------
-                         required time                          7.624    
-                         arrival time                          -1.688    
+                         required time                          7.138    
+                         arrival time                          -1.438    
   -------------------------------------------------------------------
-                         slack                                  5.936    
+                         slack                                  5.699    
 
-Slack (MET) :             5.949ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/wait_time_reg[14]/D
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.814ns  (required time - arrival time)
+  Source:                 CAM_INIT/INIT/count_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg_rep[0]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        4.027ns  (logic 2.194ns (54.488%)  route 1.833ns (45.512%))
-  Logic Levels:           6  (CARRY4=4 LUT1=1 LUT3=1)
+  Data Path Delay:        3.673ns  (logic 0.854ns (23.248%)  route 2.819ns (76.752%))
+  Logic Levels:           3  (LUT5=1 LUT6=2)
   Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
     Destination Clock Delay (DCD):    -1.987ns = ( 8.013 - 10.000 ) 
     Source Clock Delay      (SCD):    -2.376ns
@@ -671,28 +393,18 @@ Slack (MET) :             5.949ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.622    -2.376    CAM_INIT/sender/clk_100M
-    SLICE_X6Y58          FDRE                                         r  CAM_INIT/sender/wait_time_reg[2]/C
+                         net (fo=94, routed)          1.622    -2.376    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y58          FDRE (Prop_fdre_C_Q)         0.478    -1.898 f  CAM_INIT/sender/wait_time_reg[2]/Q
-                         net (fo=3, routed)           1.009    -0.889    CAM_INIT/sender/wait_time[2]
-    SLICE_X4Y58          LUT1 (Prop_lut1_I0_O)        0.301    -0.588 r  CAM_INIT/sender/wait_time0_carry_i_3/O
-                         net (fo=1, routed)           0.000    -0.588    CAM_INIT/sender/wait_time0_carry_i_3_n_0
-    SLICE_X4Y58          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    -0.038 r  CAM_INIT/sender/wait_time0_carry/CO[3]
-                         net (fo=1, routed)           0.000    -0.038    CAM_INIT/sender/wait_time0_carry_n_0
-    SLICE_X4Y59          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.076 r  CAM_INIT/sender/wait_time0_carry__0/CO[3]
-                         net (fo=1, routed)           0.000     0.076    CAM_INIT/sender/wait_time0_carry__0_n_0
-    SLICE_X4Y60          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     0.190 r  CAM_INIT/sender/wait_time0_carry__1/CO[3]
-                         net (fo=1, routed)           0.000     0.190    CAM_INIT/sender/wait_time0_carry__1_n_0
-    SLICE_X4Y61          CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.334     0.524 r  CAM_INIT/sender/wait_time0_carry__2/O[1]
-                         net (fo=1, routed)           0.824     1.348    CAM_INIT/sender/wait_time0[14]
-    SLICE_X6Y59          LUT3 (Prop_lut3_I0_O)        0.303     1.651 r  CAM_INIT/sender/wait_time[14]_i_1/O
-                         net (fo=1, routed)           0.000     1.651    CAM_INIT/sender/p_1_in[14]
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[14]/D
+    SLICE_X5Y58          FDCE (Prop_fdce_C_Q)         0.456    -1.920 f  CAM_INIT/INIT/count_reg[0]/Q
+                         net (fo=9, routed)           0.858    -1.062    CAM_INIT/INIT/count_reg[0]
+    SLICE_X4Y59          LUT6 (Prop_lut6_I0_O)        0.124    -0.938 f  CAM_INIT/INIT/data_out_reg_i_2/O
+                         net (fo=1, routed)           0.435    -0.502    CAM_INIT/INIT/data_out_reg_i_2_n_0
+    SLICE_X2Y59          LUT6 (Prop_lut6_I2_O)        0.124    -0.378 r  CAM_INIT/INIT/data_out_reg_i_1/O
+                         net (fo=5, routed)           0.845     0.467    CAM_INIT/SCCB_WRITE/count_reg[0]
+    SLICE_X2Y61          LUT5 (Prop_lut5_I0_O)        0.150     0.617 r  CAM_INIT/SCCB_WRITE/count_rep[7]_i_1/O
+                         net (fo=20, routed)          0.680     1.297    CAM_INIT/INIT/E[0]
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[0]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -705,29 +417,161 @@ Slack (MET) :             5.949ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.505     8.013    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[14]/C
+                         net (fo=94, routed)          1.505     8.013    CAM_INIT/INIT/clk_100M
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[0]/C
                          clock pessimism             -0.415     7.598    
                          clock uncertainty           -0.077     7.521    
-    SLICE_X6Y59          FDRE (Setup_fdre_C_D)        0.079     7.600    CAM_INIT/sender/wait_time_reg[14]
+    SLICE_X7Y59          FDCE (Setup_fdce_C_CE)      -0.409     7.112    CAM_INIT/INIT/count_reg_rep[0]
   -------------------------------------------------------------------
-                         required time                          7.600    
-                         arrival time                          -1.651    
+                         required time                          7.112    
+                         arrival time                          -1.297    
   -------------------------------------------------------------------
-                         slack                                  5.949    
+                         slack                                  5.814    
 
-Slack (MET) :             5.963ns  (required time - arrival time)
-  Source:                 CAM_INIT/sender/wait_time_reg[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/stat_reg[0]/D
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.814ns  (required time - arrival time)
+  Source:                 CAM_INIT/INIT/count_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg_rep[1]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.887ns  (logic 1.146ns (29.483%)  route 2.741ns (70.517%))
-  Logic Levels:           4  (LUT4=1 LUT5=1 LUT6=2)
-  Clock Path Skew:        -0.104ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.053ns = ( 7.947 - 10.000 ) 
+  Data Path Delay:        3.673ns  (logic 0.854ns (23.248%)  route 2.819ns (76.752%))
+  Logic Levels:           3  (LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.987ns = ( 8.013 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.376ns
+    Clock Pessimism Removal (CPR):    -0.415ns
+  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.138ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.622    -2.376    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y58          FDCE (Prop_fdce_C_Q)         0.456    -1.920 f  CAM_INIT/INIT/count_reg[0]/Q
+                         net (fo=9, routed)           0.858    -1.062    CAM_INIT/INIT/count_reg[0]
+    SLICE_X4Y59          LUT6 (Prop_lut6_I0_O)        0.124    -0.938 f  CAM_INIT/INIT/data_out_reg_i_2/O
+                         net (fo=1, routed)           0.435    -0.502    CAM_INIT/INIT/data_out_reg_i_2_n_0
+    SLICE_X2Y59          LUT6 (Prop_lut6_I2_O)        0.124    -0.378 r  CAM_INIT/INIT/data_out_reg_i_1/O
+                         net (fo=5, routed)           0.845     0.467    CAM_INIT/SCCB_WRITE/count_reg[0]
+    SLICE_X2Y61          LUT5 (Prop_lut5_I0_O)        0.150     0.617 r  CAM_INIT/SCCB_WRITE/count_rep[7]_i_1/O
+                         net (fo=20, routed)          0.680     1.297    CAM_INIT/INIT/E[0]
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[1]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                     10.000    10.000 r  
+    P17                                               0.000    10.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.505     8.013    CAM_INIT/INIT/clk_100M
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[1]/C
+                         clock pessimism             -0.415     7.598    
+                         clock uncertainty           -0.077     7.521    
+    SLICE_X7Y59          FDCE (Setup_fdce_C_CE)      -0.409     7.112    CAM_INIT/INIT/count_reg_rep[1]
+  -------------------------------------------------------------------
+                         required time                          7.112    
+                         arrival time                          -1.297    
+  -------------------------------------------------------------------
+                         slack                                  5.814    
+
+Slack (MET) :             5.814ns  (required time - arrival time)
+  Source:                 CAM_INIT/INIT/count_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg_rep[3]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        3.673ns  (logic 0.854ns (23.248%)  route 2.819ns (76.752%))
+  Logic Levels:           3  (LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.026ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.987ns = ( 8.013 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.376ns
+    Clock Pessimism Removal (CPR):    -0.415ns
+  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.138ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.622    -2.376    CAM_INIT/INIT/clk_100M
+    SLICE_X5Y58          FDCE                                         r  CAM_INIT/INIT/count_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y58          FDCE (Prop_fdce_C_Q)         0.456    -1.920 f  CAM_INIT/INIT/count_reg[0]/Q
+                         net (fo=9, routed)           0.858    -1.062    CAM_INIT/INIT/count_reg[0]
+    SLICE_X4Y59          LUT6 (Prop_lut6_I0_O)        0.124    -0.938 f  CAM_INIT/INIT/data_out_reg_i_2/O
+                         net (fo=1, routed)           0.435    -0.502    CAM_INIT/INIT/data_out_reg_i_2_n_0
+    SLICE_X2Y59          LUT6 (Prop_lut6_I2_O)        0.124    -0.378 r  CAM_INIT/INIT/data_out_reg_i_1/O
+                         net (fo=5, routed)           0.845     0.467    CAM_INIT/SCCB_WRITE/count_reg[0]
+    SLICE_X2Y61          LUT5 (Prop_lut5_I0_O)        0.150     0.617 r  CAM_INIT/SCCB_WRITE/count_rep[7]_i_1/O
+                         net (fo=20, routed)          0.680     1.297    CAM_INIT/INIT/E[0]
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[3]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                     10.000    10.000 r  
+    P17                                               0.000    10.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.505     8.013    CAM_INIT/INIT/clk_100M
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[3]/C
+                         clock pessimism             -0.415     7.598    
+                         clock uncertainty           -0.077     7.521    
+    SLICE_X7Y59          FDCE (Setup_fdce_C_CE)      -0.409     7.112    CAM_INIT/INIT/count_reg_rep[3]
+  -------------------------------------------------------------------
+                         required time                          7.112    
+                         arrival time                          -1.297    
+  -------------------------------------------------------------------
+                         slack                                  5.814    
+
+Slack (MET) :             5.864ns  (required time - arrival time)
+  Source:                 CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/stat_reg[0]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        3.817ns  (logic 1.027ns (26.909%)  route 2.790ns (73.091%))
+  Logic Levels:           3  (LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
     Source Clock Delay      (SCD):    -2.377ns
     Clock Pessimism Removal (CPR):    -0.428ns
   Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
@@ -747,20 +591,18 @@ Slack (MET) :             5.963ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.621    -2.377    CAM_INIT/sender/clk_100M
-    SLICE_X6Y59          FDRE                                         r  CAM_INIT/sender/wait_time_reg[4]/C
+                         net (fo=94, routed)          1.621    -2.377    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y60          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y59          FDRE (Prop_fdre_C_Q)         0.478    -1.899 f  CAM_INIT/sender/wait_time_reg[4]/Q
-                         net (fo=3, routed)           0.824    -1.075    CAM_INIT/sender/wait_time[4]
-    SLICE_X5Y59          LUT4 (Prop_lut4_I1_O)        0.296    -0.779 f  CAM_INIT/sender/stat[3]_i_6/O
-                         net (fo=2, routed)           0.824     0.046    CAM_INIT/sender/stat[3]_i_6_n_0
-    SLICE_X7Y58          LUT5 (Prop_lut5_I3_O)        0.124     0.170 r  CAM_INIT/sender/stat[3]_i_3/O
-                         net (fo=5, routed)           0.592     0.761    CAM_INIT/sender/stat[3]_i_3_n_0
-    SLICE_X10Y59         LUT6 (Prop_lut6_I2_O)        0.124     0.885 f  CAM_INIT/sender/stat[0]_i_2/O
-                         net (fo=1, routed)           0.501     1.386    CAM_INIT/sender/stat[0]_i_2_n_0
-    SLICE_X11Y59         LUT6 (Prop_lut6_I4_O)        0.124     1.510 r  CAM_INIT/sender/stat[0]_i_1__0/O
-                         net (fo=1, routed)           0.000     1.510    CAM_INIT/sender/stat[0]
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[0]/D
+    SLICE_X6Y60          FDCE (Prop_fdce_C_Q)         0.478    -1.899 f  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/Q
+                         net (fo=3, routed)           1.125    -0.774    CAM_INIT/SCCB_WRITE/sel0[6]
+    SLICE_X6Y58          LUT4 (Prop_lut4_I1_O)        0.301    -0.473 f  CAM_INIT/SCCB_WRITE/stat[3]_i_5/O
+                         net (fo=1, routed)           0.590     0.117    CAM_INIT/SCCB_WRITE/stat[3]_i_5_n_0
+    SLICE_X6Y59          LUT6 (Prop_lut6_I1_O)        0.124     0.241 r  CAM_INIT/SCCB_WRITE/stat[3]_i_3/O
+                         net (fo=2, routed)           0.696     0.937    CAM_INIT/SCCB_WRITE/stat[3]_i_3_n_0
+    SLICE_X3Y61          LUT6 (Prop_lut6_I1_O)        0.124     1.061 r  CAM_INIT/SCCB_WRITE/stat[3]_i_1/O
+                         net (fo=4, routed)           0.379     1.440    CAM_INIT/SCCB_WRITE/stat0
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[0]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -773,30 +615,30 @@ Slack (MET) :             5.963ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.439     7.947    CAM_INIT/sender/clk_100M
-    SLICE_X11Y59         FDRE                                         r  CAM_INIT/sender/stat_reg[0]/C
-                         clock pessimism             -0.428     7.519    
-                         clock uncertainty           -0.077     7.442    
-    SLICE_X11Y59         FDRE (Setup_fdre_C_D)        0.031     7.473    CAM_INIT/sender/stat_reg[0]
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[0]/C
+                         clock pessimism             -0.428     7.586    
+                         clock uncertainty           -0.077     7.509    
+    SLICE_X3Y61          FDCE (Setup_fdce_C_CE)      -0.205     7.304    CAM_INIT/SCCB_WRITE/stat_reg[0]
   -------------------------------------------------------------------
-                         required time                          7.473    
-                         arrival time                          -1.510    
+                         required time                          7.304    
+                         arrival time                          -1.440    
   -------------------------------------------------------------------
-                         slack                                  5.963    
+                         slack                                  5.864    
 
-Slack (MET) :             5.984ns  (required time - arrival time)
-  Source:                 CAM_INIT/init/count_reg[3]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/count_reg[2]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.864ns  (required time - arrival time)
+  Source:                 CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/stat_reg[1]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.696ns  (logic 0.890ns (24.082%)  route 2.806ns (75.918%))
-  Logic Levels:           3  (LUT2=1 LUT6=2)
-  Clock Path Skew:        -0.038ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.053ns = ( 7.947 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.443ns
+  Data Path Delay:        3.817ns  (logic 1.027ns (26.909%)  route 2.790ns (73.091%))
+  Logic Levels:           3  (LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.377ns
     Clock Pessimism Removal (CPR):    -0.428ns
   Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -815,18 +657,18 @@ Slack (MET) :             5.984ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.555    -2.443    CAM_INIT/init/clk_100M
-    SLICE_X12Y60         FDRE                                         r  CAM_INIT/init/count_reg[3]/C
+                         net (fo=94, routed)          1.621    -2.377    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y60          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X12Y60         FDRE (Prop_fdre_C_Q)         0.518    -1.925 f  CAM_INIT/init/count_reg[3]/Q
-                         net (fo=6, routed)           1.069    -0.855    CAM_INIT/init/count_reg[3]
-    SLICE_X10Y60         LUT6 (Prop_lut6_I0_O)        0.124    -0.731 f  CAM_INIT/init/data_out_reg_i_2/O
-                         net (fo=1, routed)           0.312    -0.419    CAM_INIT/init/data_out_reg_i_2_n_0
-    SLICE_X10Y61         LUT6 (Prop_lut6_I2_O)        0.124    -0.295 r  CAM_INIT/init/data_out_reg_i_1/O
-                         net (fo=6, routed)           0.858     0.563    CAM_INIT/sender/count_reg[0]
-    SLICE_X8Y59          LUT2 (Prop_lut2_I1_O)        0.124     0.687 r  CAM_INIT/sender/count_rep[7]_i_1/O
-                         net (fo=19, routed)          0.566     1.253    CAM_INIT/init/E[0]
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg[2]/CE
+    SLICE_X6Y60          FDCE (Prop_fdce_C_Q)         0.478    -1.899 f  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/Q
+                         net (fo=3, routed)           1.125    -0.774    CAM_INIT/SCCB_WRITE/sel0[6]
+    SLICE_X6Y58          LUT4 (Prop_lut4_I1_O)        0.301    -0.473 f  CAM_INIT/SCCB_WRITE/stat[3]_i_5/O
+                         net (fo=1, routed)           0.590     0.117    CAM_INIT/SCCB_WRITE/stat[3]_i_5_n_0
+    SLICE_X6Y59          LUT6 (Prop_lut6_I1_O)        0.124     0.241 r  CAM_INIT/SCCB_WRITE/stat[3]_i_3/O
+                         net (fo=2, routed)           0.696     0.937    CAM_INIT/SCCB_WRITE/stat[3]_i_3_n_0
+    SLICE_X3Y61          LUT6 (Prop_lut6_I1_O)        0.124     1.061 r  CAM_INIT/SCCB_WRITE/stat[3]_i_1/O
+                         net (fo=4, routed)           0.379     1.440    CAM_INIT/SCCB_WRITE/stat0
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[1]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -839,30 +681,30 @@ Slack (MET) :             5.984ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.439     7.947    CAM_INIT/init/clk_100M
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg[2]/C
-                         clock pessimism             -0.428     7.519    
-                         clock uncertainty           -0.077     7.442    
-    SLICE_X11Y60         FDRE (Setup_fdre_C_CE)      -0.205     7.237    CAM_INIT/init/count_reg[2]
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[1]/C
+                         clock pessimism             -0.428     7.586    
+                         clock uncertainty           -0.077     7.509    
+    SLICE_X3Y61          FDCE (Setup_fdce_C_CE)      -0.205     7.304    CAM_INIT/SCCB_WRITE/stat_reg[1]
   -------------------------------------------------------------------
-                         required time                          7.237    
-                         arrival time                          -1.253    
+                         required time                          7.304    
+                         arrival time                          -1.440    
   -------------------------------------------------------------------
-                         slack                                  5.984    
+                         slack                                  5.864    
 
-Slack (MET) :             5.984ns  (required time - arrival time)
-  Source:                 CAM_INIT/init/count_reg[3]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/count_reg[5]/CE
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             5.864ns  (required time - arrival time)
+  Source:                 CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/stat_reg[2]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        3.696ns  (logic 0.890ns (24.082%)  route 2.806ns (75.918%))
-  Logic Levels:           3  (LUT2=1 LUT6=2)
-  Clock Path Skew:        -0.038ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    -2.053ns = ( 7.947 - 10.000 ) 
-    Source Clock Delay      (SCD):    -2.443ns
+  Data Path Delay:        3.817ns  (logic 1.027ns (26.909%)  route 2.790ns (73.091%))
+  Logic Levels:           3  (LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.377ns
     Clock Pessimism Removal (CPR):    -0.428ns
   Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
@@ -881,18 +723,18 @@ Slack (MET) :             5.984ns  (required time - arrival time)
                                                      -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.555    -2.443    CAM_INIT/init/clk_100M
-    SLICE_X12Y60         FDRE                                         r  CAM_INIT/init/count_reg[3]/C
+                         net (fo=94, routed)          1.621    -2.377    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y60          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X12Y60         FDRE (Prop_fdre_C_Q)         0.518    -1.925 f  CAM_INIT/init/count_reg[3]/Q
-                         net (fo=6, routed)           1.069    -0.855    CAM_INIT/init/count_reg[3]
-    SLICE_X10Y60         LUT6 (Prop_lut6_I0_O)        0.124    -0.731 f  CAM_INIT/init/data_out_reg_i_2/O
-                         net (fo=1, routed)           0.312    -0.419    CAM_INIT/init/data_out_reg_i_2_n_0
-    SLICE_X10Y61         LUT6 (Prop_lut6_I2_O)        0.124    -0.295 r  CAM_INIT/init/data_out_reg_i_1/O
-                         net (fo=6, routed)           0.858     0.563    CAM_INIT/sender/count_reg[0]
-    SLICE_X8Y59          LUT2 (Prop_lut2_I1_O)        0.124     0.687 r  CAM_INIT/sender/count_rep[7]_i_1/O
-                         net (fo=19, routed)          0.566     1.253    CAM_INIT/init/E[0]
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg[5]/CE
+    SLICE_X6Y60          FDCE (Prop_fdce_C_Q)         0.478    -1.899 f  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/Q
+                         net (fo=3, routed)           1.125    -0.774    CAM_INIT/SCCB_WRITE/sel0[6]
+    SLICE_X6Y58          LUT4 (Prop_lut4_I1_O)        0.301    -0.473 f  CAM_INIT/SCCB_WRITE/stat[3]_i_5/O
+                         net (fo=1, routed)           0.590     0.117    CAM_INIT/SCCB_WRITE/stat[3]_i_5_n_0
+    SLICE_X6Y59          LUT6 (Prop_lut6_I1_O)        0.124     0.241 r  CAM_INIT/SCCB_WRITE/stat[3]_i_3/O
+                         net (fo=2, routed)           0.696     0.937    CAM_INIT/SCCB_WRITE/stat[3]_i_3_n_0
+    SLICE_X3Y61          LUT6 (Prop_lut6_I1_O)        0.124     1.061 r  CAM_INIT/SCCB_WRITE/stat[3]_i_1/O
+                         net (fo=4, routed)           0.379     1.440    CAM_INIT/SCCB_WRITE/stat0
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[2]/CE
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -905,16 +747,148 @@ Slack (MET) :             5.984ns  (required time - arrival time)
                                                      -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          1.439     7.947    CAM_INIT/init/clk_100M
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg[5]/C
-                         clock pessimism             -0.428     7.519    
-                         clock uncertainty           -0.077     7.442    
-    SLICE_X11Y60         FDRE (Setup_fdre_C_CE)      -0.205     7.237    CAM_INIT/init/count_reg[5]
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[2]/C
+                         clock pessimism             -0.428     7.586    
+                         clock uncertainty           -0.077     7.509    
+    SLICE_X3Y61          FDCE (Setup_fdce_C_CE)      -0.205     7.304    CAM_INIT/SCCB_WRITE/stat_reg[2]
   -------------------------------------------------------------------
-                         required time                          7.237    
-                         arrival time                          -1.253    
+                         required time                          7.304    
+                         arrival time                          -1.440    
   -------------------------------------------------------------------
-                         slack                                  5.984    
+                         slack                                  5.864    
+
+Slack (MET) :             5.864ns  (required time - arrival time)
+  Source:                 CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/stat_reg[3]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        3.817ns  (logic 1.027ns (26.909%)  route 2.790ns (73.091%))
+  Logic Levels:           3  (LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.037ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.377ns
+    Clock Pessimism Removal (CPR):    -0.428ns
+  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.138ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.621    -2.377    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y60          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y60          FDCE (Prop_fdce_C_Q)         0.478    -1.899 f  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/Q
+                         net (fo=3, routed)           1.125    -0.774    CAM_INIT/SCCB_WRITE/sel0[6]
+    SLICE_X6Y58          LUT4 (Prop_lut4_I1_O)        0.301    -0.473 f  CAM_INIT/SCCB_WRITE/stat[3]_i_5/O
+                         net (fo=1, routed)           0.590     0.117    CAM_INIT/SCCB_WRITE/stat[3]_i_5_n_0
+    SLICE_X6Y59          LUT6 (Prop_lut6_I1_O)        0.124     0.241 r  CAM_INIT/SCCB_WRITE/stat[3]_i_3/O
+                         net (fo=2, routed)           0.696     0.937    CAM_INIT/SCCB_WRITE/stat[3]_i_3_n_0
+    SLICE_X3Y61          LUT6 (Prop_lut6_I1_O)        0.124     1.061 r  CAM_INIT/SCCB_WRITE/stat[3]_i_1/O
+                         net (fo=4, routed)           0.379     1.440    CAM_INIT/SCCB_WRITE/stat0
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[3]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                     10.000    10.000 r  
+    P17                                               0.000    10.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[3]/C
+                         clock pessimism             -0.428     7.586    
+                         clock uncertainty           -0.077     7.509    
+    SLICE_X3Y61          FDCE (Setup_fdce_C_CE)      -0.205     7.304    CAM_INIT/SCCB_WRITE/stat_reg[3]
+  -------------------------------------------------------------------
+                         required time                          7.304    
+                         arrival time                          -1.440    
+  -------------------------------------------------------------------
+                         slack                                  5.864    
+
+Slack (MET) :             5.889ns  (required time - arrival time)
+  Source:                 CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/wait_time_reg[10]/CE
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_100M_pll_clock rise@10.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        3.841ns  (logic 1.027ns (26.739%)  route 2.814ns (73.261%))
+  Logic Levels:           3  (LUT4=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        -0.024ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.986ns = ( 8.014 - 10.000 ) 
+    Source Clock Delay      (SCD):    -2.377ns
+    Clock Pessimism Removal (CPR):    -0.415ns
+  Clock Uncertainty:      0.077ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.138ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.478     1.478 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.253     2.731    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -8.486    -5.754 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.660    -4.094    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096    -3.998 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.621    -2.377    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y60          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X6Y60          FDCE (Prop_fdce_C_Q)         0.478    -1.899 r  CAM_INIT/SCCB_WRITE/wait_time_reg[6]/Q
+                         net (fo=3, routed)           1.125    -0.774    CAM_INIT/SCCB_WRITE/sel0[6]
+    SLICE_X6Y58          LUT4 (Prop_lut4_I1_O)        0.301    -0.473 r  CAM_INIT/SCCB_WRITE/stat[3]_i_5/O
+                         net (fo=1, routed)           0.590     0.117    CAM_INIT/SCCB_WRITE/stat[3]_i_5_n_0
+    SLICE_X6Y59          LUT6 (Prop_lut6_I1_O)        0.124     0.241 f  CAM_INIT/SCCB_WRITE/stat[3]_i_3/O
+                         net (fo=2, routed)           0.437     0.678    CAM_INIT/SCCB_WRITE/stat[3]_i_3_n_0
+    SLICE_X5Y61          LUT5 (Prop_lut5_I4_O)        0.124     0.802 r  CAM_INIT/SCCB_WRITE/wait_time[16]_i_1/O
+                         net (fo=17, routed)          0.662     1.464    CAM_INIT/SCCB_WRITE/wait_time[16]_i_1_n_0
+    SLICE_X6Y58          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[10]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                     10.000    10.000 r  
+    P17                                               0.000    10.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000    10.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         1.408    11.408 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           1.181    12.589    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -7.753     4.835 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           1.582     6.417    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     6.508 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          1.506     8.014    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X6Y58          FDCE                                         r  CAM_INIT/SCCB_WRITE/wait_time_reg[10]/C
+                         clock pessimism             -0.415     7.599    
+                         clock uncertainty           -0.077     7.522    
+    SLICE_X6Y58          FDCE (Setup_fdce_C_CE)      -0.169     7.353    CAM_INIT/SCCB_WRITE/wait_time_reg[10]
+  -------------------------------------------------------------------
+                         required time                          7.353    
+                         arrival time                          -1.464    
+  -------------------------------------------------------------------
+                         slack                                  5.889    
 
 
 
@@ -922,20 +896,20 @@ Slack (MET) :             5.984ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.109ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[6]
-                            (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+Slack (MET) :             0.163ns  (arrival time - required time)
+  Source:                 CAM_INIT/INIT/count_reg[4]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/count_reg[8]/D
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.367ns  (logic 0.141ns (38.415%)  route 0.226ns (61.585%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
-    Clock Pessimism Removal (CPR):    0.196ns
+  Data Path Delay:        0.296ns  (logic 0.186ns (62.765%)  route 0.110ns (37.235%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.285ns
+    Source Clock Delay      (SCD):    -0.517ns
+    Clock Pessimism Removal (CPR):    0.220ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -949,68 +923,14 @@ Slack (MET) :             0.109ns  (arrival time - required time)
                                                      -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg_rep[2]/C
+                         net (fo=94, routed)          0.592    -0.517    CAM_INIT/INIT/clk_100M
+    SLICE_X3Y59          FDCE                                         r  CAM_INIT/INIT/count_reg[4]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X11Y60         FDRE (Prop_fdre_C_Q)         0.141    -0.406 r  CAM_INIT/init/count_reg_rep[2]/Q
-                         net (fo=1, routed)           0.226    -0.180    CAM_INIT/init/count[2]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[6]
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
-                         clock pessimism             -0.196    -0.472    
-    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[6])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
-  -------------------------------------------------------------------
-                         required time                          0.289    
-                         arrival time                          -0.180    
-  -------------------------------------------------------------------
-                         slack                                  0.109    
-
-Slack (MET) :             0.114ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[6]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[10]
-                            (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.372ns  (logic 0.164ns (44.041%)  route 0.208ns (55.959%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
-    Clock Pessimism Removal (CPR):    0.196ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X10Y60         FDRE                                         r  CAM_INIT/init/count_reg_rep[6]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X10Y60         FDRE (Prop_fdre_C_Q)         0.164    -0.383 r  CAM_INIT/init/count_reg_rep[6]/Q
-                         net (fo=1, routed)           0.208    -0.175    CAM_INIT/init/count[6]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[10]
+    SLICE_X3Y59          FDCE (Prop_fdce_C_Q)         0.141    -0.376 r  CAM_INIT/INIT/count_reg[4]/Q
+                         net (fo=7, routed)           0.110    -0.266    CAM_INIT/INIT/count_reg[4]
+    SLICE_X2Y59          LUT6 (Prop_lut6_I4_O)        0.045    -0.221 r  CAM_INIT/INIT/count[8]_i_1/O
+                         net (fo=1, routed)           0.000    -0.221    CAM_INIT/INIT/p_0_in__0[8]
+    SLICE_X2Y59          FDCE                                         r  CAM_INIT/INIT/count_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -1023,87 +943,30 @@ Slack (MET) :             0.114ns  (arrival time - required time)
                                                      -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
-                         clock pessimism             -0.196    -0.472    
-    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[10])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
+                         net (fo=94, routed)          0.862    -0.285    CAM_INIT/INIT/clk_100M
+    SLICE_X2Y59          FDCE                                         r  CAM_INIT/INIT/count_reg[8]/C
+                         clock pessimism             -0.220    -0.504    
+    SLICE_X2Y59          FDCE (Hold_fdce_C_D)         0.120    -0.384    CAM_INIT/INIT/count_reg[8]
   -------------------------------------------------------------------
-                         required time                          0.289    
-                         arrival time                          -0.175    
+                         required time                          0.384    
+                         arrival time                          -0.221    
   -------------------------------------------------------------------
-                         slack                                  0.114    
-
-Slack (MET) :             0.117ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[1]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[5]
-                            (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.375ns  (logic 0.164ns (43.686%)  route 0.211ns (56.314%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
-    Clock Pessimism Removal (CPR):    0.196ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X10Y61         FDRE                                         r  CAM_INIT/init/count_reg_rep[1]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X10Y61         FDRE (Prop_fdre_C_Q)         0.164    -0.383 r  CAM_INIT/init/count_reg_rep[1]/Q
-                         net (fo=1, routed)           0.211    -0.172    CAM_INIT/init/count[1]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[5]
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
-                         clock pessimism             -0.196    -0.472    
-    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[5])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
-  -------------------------------------------------------------------
-                         required time                          0.289    
-                         arrival time                          -0.172    
-  -------------------------------------------------------------------
-                         slack                                  0.117    
+                         slack                                  0.163    
 
 Slack (MET) :             0.164ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[0]/C
+  Source:                 CAM_INIT/SCCB_WRITE/stat_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/next_stat_reg[3]/D
                             (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[4]
-                            (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.422ns  (logic 0.141ns (33.373%)  route 0.281ns (66.627%))
-  Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
-    Clock Pessimism Removal (CPR):    0.196ns
+  Data Path Delay:        0.298ns  (logic 0.186ns (62.512%)  route 0.112ns (37.488%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.286ns
+    Source Clock Delay      (SCD):    -0.518ns
+    Clock Pessimism Removal (CPR):    0.220ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1117,12 +980,14 @@ Slack (MET) :             0.164ns  (arrival time - required time)
                                                      -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X11Y60         FDRE                                         r  CAM_INIT/init/count_reg_rep[0]/C
+                         net (fo=94, routed)          0.591    -0.518    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X11Y60         FDRE (Prop_fdre_C_Q)         0.141    -0.406 r  CAM_INIT/init/count_reg_rep[0]/Q
-                         net (fo=1, routed)           0.281    -0.125    CAM_INIT/init/count[0]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[4]
+    SLICE_X3Y61          FDCE (Prop_fdce_C_Q)         0.141    -0.377 r  CAM_INIT/SCCB_WRITE/stat_reg[0]/Q
+                         net (fo=34, routed)          0.112    -0.266    CAM_INIT/SCCB_WRITE/stat[0]
+    SLICE_X2Y61          LUT3 (Prop_lut3_I0_O)        0.045    -0.221 r  CAM_INIT/SCCB_WRITE/next_stat[3]_i_2/O
+                         net (fo=1, routed)           0.000    -0.221    CAM_INIT/SCCB_WRITE/next_stat[3]_i_2_n_0
+    SLICE_X2Y61          FDRE                                         r  CAM_INIT/SCCB_WRITE/next_stat_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -1135,30 +1000,143 @@ Slack (MET) :             0.164ns  (arrival time - required time)
                                                      -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
-                         clock pessimism             -0.196    -0.472    
-    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[4])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
+                         net (fo=94, routed)          0.861    -0.286    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X2Y61          FDRE                                         r  CAM_INIT/SCCB_WRITE/next_stat_reg[3]/C
+                         clock pessimism             -0.220    -0.505    
+    SLICE_X2Y61          FDRE (Hold_fdre_C_D)         0.121    -0.384    CAM_INIT/SCCB_WRITE/next_stat_reg[3]
   -------------------------------------------------------------------
-                         required time                          0.289    
-                         arrival time                          -0.125    
+                         required time                          0.384    
+                         arrival time                          -0.221    
   -------------------------------------------------------------------
                          slack                                  0.164    
 
-Slack (MET) :             0.185ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[3]/C
+Slack (MET) :             0.174ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/next_stat_reg[2]/C
                             (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[7]
+  Destination:            CAM_INIT/SCCB_WRITE/stat_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        0.294ns  (logic 0.212ns (72.083%)  route 0.082ns (27.917%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.286ns
+    Source Clock Delay      (SCD):    -0.518ns
+    Clock Pessimism Removal (CPR):    0.220ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.591    -0.518    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X2Y61          FDRE                                         r  CAM_INIT/SCCB_WRITE/next_stat_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X2Y61          FDRE (Prop_fdre_C_Q)         0.164    -0.354 r  CAM_INIT/SCCB_WRITE/next_stat_reg[2]/Q
+                         net (fo=1, routed)           0.082    -0.272    CAM_INIT/SCCB_WRITE/next_stat_reg_n_0_[2]
+    SLICE_X3Y61          LUT3 (Prop_lut3_I0_O)        0.048    -0.224 r  CAM_INIT/SCCB_WRITE/stat[2]_i_1/O
+                         net (fo=1, routed)           0.000    -0.224    CAM_INIT/SCCB_WRITE/stat[2]_i_1_n_0
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.861    -0.286    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[2]/C
+                         clock pessimism             -0.220    -0.505    
+    SLICE_X3Y61          FDCE (Hold_fdce_C_D)         0.107    -0.398    CAM_INIT/SCCB_WRITE/stat_reg[2]
+  -------------------------------------------------------------------
+                         required time                          0.398    
+                         arrival time                          -0.224    
+  -------------------------------------------------------------------
+                         slack                                  0.174    
+
+Slack (MET) :             0.177ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/data_temp_reg[4]/C
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/data_temp_reg[5]/D
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        0.297ns  (logic 0.215ns (72.365%)  route 0.082ns (27.635%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.316ns
+    Source Clock Delay      (SCD):    -0.547ns
+    Clock Pessimism Removal (CPR):    0.219ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.562    -0.547    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X8Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y60          FDPE (Prop_fdpe_C_Q)         0.164    -0.383 r  CAM_INIT/SCCB_WRITE/data_temp_reg[4]/Q
+                         net (fo=1, routed)           0.082    -0.301    CAM_INIT/SCCB_WRITE/p_0_in[5]
+    SLICE_X9Y60          LUT4 (Prop_lut4_I3_O)        0.051    -0.250 r  CAM_INIT/SCCB_WRITE/data_temp[5]_i_1/O
+                         net (fo=1, routed)           0.000    -0.250    CAM_INIT/SCCB_WRITE/data_temp[5]_i_1_n_0
+    SLICE_X9Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.831    -0.316    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X9Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[5]/C
+                         clock pessimism             -0.219    -0.534    
+    SLICE_X9Y60          FDPE (Hold_fdpe_C_D)         0.107    -0.427    CAM_INIT/SCCB_WRITE/data_temp_reg[5]
+  -------------------------------------------------------------------
+                         required time                          0.427    
+                         arrival time                          -0.250    
+  -------------------------------------------------------------------
+                         slack                                  0.177    
+
+Slack (MET) :             0.211ns  (arrival time - required time)
+  Source:                 CAM_INIT/INIT/count_reg_rep[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/data_out_reg/ADDRARDADDR[7]
                             (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.444ns  (logic 0.164ns (36.945%)  route 0.280ns (63.055%))
+  Data Path Delay:        0.441ns  (logic 0.141ns (31.962%)  route 0.300ns (68.038%))
   Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
+  Clock Path Skew:        0.047ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
+    Source Clock Delay      (SCD):    -0.519ns
     Clock Pessimism Removal (CPR):    0.196ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1173,12 +1151,12 @@ Slack (MET) :             0.185ns  (arrival time - required time)
                                                      -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X12Y60         FDRE                                         r  CAM_INIT/init/count_reg_rep[3]/C
+                         net (fo=94, routed)          0.590    -0.519    CAM_INIT/INIT/clk_100M
+    SLICE_X7Y59          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[3]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X12Y60         FDRE (Prop_fdre_C_Q)         0.164    -0.383 r  CAM_INIT/init/count_reg_rep[3]/Q
-                         net (fo=1, routed)           0.280    -0.104    CAM_INIT/init/count[3]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[7]
+    SLICE_X7Y59          FDCE (Prop_fdce_C_Q)         0.141    -0.378 r  CAM_INIT/INIT/count_reg_rep[3]/Q
+                         net (fo=1, routed)           0.300    -0.078    CAM_INIT/INIT/count[3]
+    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/INIT/data_out_reg/ADDRARDADDR[7]
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -1191,145 +1169,31 @@ Slack (MET) :             0.185ns  (arrival time - required time)
                                                      -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
+                         net (fo=94, routed)          0.871    -0.276    CAM_INIT/INIT/clk_100M
+    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/INIT/data_out_reg/CLKARDCLK
                          clock pessimism             -0.196    -0.472    
     RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[7])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
+                                                      0.183    -0.289    CAM_INIT/INIT/data_out_reg
   -------------------------------------------------------------------
                          required time                          0.289    
-                         arrival time                          -0.104    
+                         arrival time                          -0.078    
   -------------------------------------------------------------------
-                         slack                                  0.185    
+                         slack                                  0.211    
 
-Slack (MET) :             0.188ns  (arrival time - required time)
-  Source:                 CAM_INIT/sender/stat_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/sccb_ready_reg/D
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.321ns  (logic 0.186ns (58.014%)  route 0.135ns (41.986%))
-  Logic Levels:           1  (LUT5=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.315ns
-    Source Clock Delay      (SCD):    -0.546ns
-    Clock Pessimism Removal (CPR):    0.219ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.563    -0.546    CAM_INIT/sender/clk_100M
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X9Y59          FDRE (Prop_fdre_C_Q)         0.141    -0.405 f  CAM_INIT/sender/stat_reg[2]/Q
-                         net (fo=18, routed)          0.135    -0.271    CAM_INIT/sender/stat_reg_n_0_[2]
-    SLICE_X8Y59          LUT5 (Prop_lut5_I3_O)        0.045    -0.226 r  CAM_INIT/sender/sccb_ready_i_1/O
-                         net (fo=1, routed)           0.000    -0.226    CAM_INIT/sender/sccb_ready0
-    SLICE_X8Y59          FDRE                                         r  CAM_INIT/sender/sccb_ready_reg/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.832    -0.315    CAM_INIT/sender/clk_100M
-    SLICE_X8Y59          FDRE                                         r  CAM_INIT/sender/sccb_ready_reg/C
-                         clock pessimism             -0.219    -0.533    
-    SLICE_X8Y59          FDRE (Hold_fdre_C_D)         0.120    -0.413    CAM_INIT/sender/sccb_ready_reg
-  -------------------------------------------------------------------
-                         required time                          0.413    
-                         arrival time                          -0.226    
-  -------------------------------------------------------------------
-                         slack                                  0.188    
-
-Slack (MET) :             0.191ns  (arrival time - required time)
-  Source:                 CAM_INIT/sender/stat_reg[2]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/sio_d_send_reg/D
+Slack (MET) :             0.211ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/stat_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/next_stat_reg[2]/D
                             (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.325ns  (logic 0.186ns (57.299%)  route 0.139ns (42.701%))
-  Logic Levels:           1  (LUT6=1)
-  Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.315ns
-    Source Clock Delay      (SCD):    -0.546ns
-    Clock Pessimism Removal (CPR):    0.219ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.563    -0.546    CAM_INIT/sender/clk_100M
-    SLICE_X9Y59          FDRE                                         r  CAM_INIT/sender/stat_reg[2]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X9Y59          FDRE (Prop_fdre_C_Q)         0.141    -0.405 r  CAM_INIT/sender/stat_reg[2]/Q
-                         net (fo=18, routed)          0.139    -0.267    CAM_INIT/sender/stat_reg_n_0_[2]
-    SLICE_X8Y59          LUT6 (Prop_lut6_I1_O)        0.045    -0.222 r  CAM_INIT/sender/sio_d_send_i_2/O
-                         net (fo=1, routed)           0.000    -0.222    CAM_INIT/sender/sio_d_send_i_1_n_0
-    SLICE_X8Y59          FDRE                                         r  CAM_INIT/sender/sio_d_send_reg/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.832    -0.315    CAM_INIT/sender/clk_100M
-    SLICE_X8Y59          FDRE                                         r  CAM_INIT/sender/sio_d_send_reg/C
-                         clock pessimism             -0.219    -0.533    
-    SLICE_X8Y59          FDRE (Hold_fdre_C_D)         0.121    -0.412    CAM_INIT/sender/sio_d_send_reg
-  -------------------------------------------------------------------
-                         required time                          0.412    
-                         arrival time                          -0.222    
-  -------------------------------------------------------------------
-                         slack                                  0.191    
-
-Slack (MET) :             0.193ns  (arrival time - required time)
-  Source:                 CAM_INIT/sender/data_temp_reg[11]/C
-                            (rising edge-triggered cell FDSE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/data_temp_reg[12]/D
-                            (rising edge-triggered cell FDSE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.326ns  (logic 0.186ns (57.037%)  route 0.140ns (42.963%))
+  Data Path Delay:        0.344ns  (logic 0.186ns (54.093%)  route 0.158ns (45.907%))
   Logic Levels:           1  (LUT3=1)
   Clock Path Skew:        0.013ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.318ns
-    Source Clock Delay      (SCD):    -0.548ns
-    Clock Pessimism Removal (CPR):    0.218ns
+    Destination Clock Delay (DCD):    -0.286ns
+    Source Clock Delay      (SCD):    -0.518ns
+    Clock Pessimism Removal (CPR):    0.220ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -1343,71 +1207,14 @@ Slack (MET) :             0.193ns  (arrival time - required time)
                                                      -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.561    -0.548    CAM_INIT/sender/clk_100M
-    SLICE_X9Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[11]/C
+                         net (fo=94, routed)          0.591    -0.518    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y61          FDCE                                         r  CAM_INIT/SCCB_WRITE/stat_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X9Y62          FDSE (Prop_fdse_C_Q)         0.141    -0.407 r  CAM_INIT/sender/data_temp_reg[11]/Q
-                         net (fo=1, routed)           0.140    -0.267    CAM_INIT/sender/p_0_in[12]
-    SLICE_X8Y62          LUT3 (Prop_lut3_I0_O)        0.045    -0.222 r  CAM_INIT/sender/data_temp[12]_i_1/O
-                         net (fo=1, routed)           0.000    -0.222    CAM_INIT/sender/data_temp[12]_i_1_n_0
-    SLICE_X8Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[12]/D
-  -------------------------------------------------------------------    -------------------
-
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.829    -0.318    CAM_INIT/sender/clk_100M
-    SLICE_X8Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[12]/C
-                         clock pessimism             -0.218    -0.535    
-    SLICE_X8Y62          FDSE (Hold_fdse_C_D)         0.120    -0.415    CAM_INIT/sender/data_temp_reg[12]
-  -------------------------------------------------------------------
-                         required time                          0.415    
-                         arrival time                          -0.222    
-  -------------------------------------------------------------------
-                         slack                                  0.193    
-
-Slack (MET) :             0.204ns  (arrival time - required time)
-  Source:                 CAM_INIT/sender/data_temp_reg[26]/C
-                            (rising edge-triggered cell FDSE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/sender/data_temp_reg[27]/D
-                            (rising edge-triggered cell FDSE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Path Group:             clk_100M_pll_clock
-  Path Type:              Hold (Min at Fast Process Corner)
-  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.335ns  (logic 0.251ns (74.978%)  route 0.084ns (25.022%))
-  Logic Levels:           1  (LUT3=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    -0.318ns
-    Source Clock Delay      (SCD):    -0.548ns
-    Clock Pessimism Removal (CPR):    0.231ns
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-                         (clock clk_100M_pll_clock rise edge)
-                                                      0.000     0.000 r  
-    P17                                               0.000     0.000 r  sys_clk_in (IN)
-                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
-    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
-                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
-    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
-                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
-                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
-    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.561    -0.548    CAM_INIT/sender/clk_100M
-    SLICE_X8Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[26]/C
-  -------------------------------------------------------------------    -------------------
-    SLICE_X8Y62          FDSE (Prop_fdse_C_Q)         0.148    -0.400 r  CAM_INIT/sender/data_temp_reg[26]/Q
-                         net (fo=1, routed)           0.084    -0.317    CAM_INIT/sender/p_0_in[27]
-    SLICE_X8Y62          LUT3 (Prop_lut3_I0_O)        0.103    -0.214 r  CAM_INIT/sender/data_temp[27]_i_1/O
-                         net (fo=1, routed)           0.000    -0.214    CAM_INIT/sender/data_temp[27]_i_1_n_0
-    SLICE_X8Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[27]/D
+    SLICE_X3Y61          FDCE (Prop_fdce_C_Q)         0.141    -0.377 r  CAM_INIT/SCCB_WRITE/stat_reg[1]/Q
+                         net (fo=48, routed)          0.158    -0.220    CAM_INIT/SCCB_WRITE/stat[1]
+    SLICE_X2Y61          LUT3 (Prop_lut3_I0_O)        0.045    -0.175 r  CAM_INIT/SCCB_WRITE/next_stat[2]_i_1/O
+                         net (fo=1, routed)           0.000    -0.175    CAM_INIT/SCCB_WRITE/next_stat[2]_i_1_n_0
+    SLICE_X2Y61          FDRE                                         r  CAM_INIT/SCCB_WRITE/next_stat_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -1420,29 +1227,29 @@ Slack (MET) :             0.204ns  (arrival time - required time)
                                                      -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.829    -0.318    CAM_INIT/sender/clk_100M
-    SLICE_X8Y62          FDSE                                         r  CAM_INIT/sender/data_temp_reg[27]/C
-                         clock pessimism             -0.231    -0.548    
-    SLICE_X8Y62          FDSE (Hold_fdse_C_D)         0.131    -0.417    CAM_INIT/sender/data_temp_reg[27]
+                         net (fo=94, routed)          0.861    -0.286    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X2Y61          FDRE                                         r  CAM_INIT/SCCB_WRITE/next_stat_reg[2]/C
+                         clock pessimism             -0.220    -0.505    
+    SLICE_X2Y61          FDRE (Hold_fdre_C_D)         0.120    -0.385    CAM_INIT/SCCB_WRITE/next_stat_reg[2]
   -------------------------------------------------------------------
-                         required time                          0.417    
-                         arrival time                          -0.214    
+                         required time                          0.385    
+                         arrival time                          -0.175    
   -------------------------------------------------------------------
-                         slack                                  0.204    
+                         slack                                  0.211    
 
-Slack (MET) :             0.208ns  (arrival time - required time)
-  Source:                 CAM_INIT/init/count_reg_rep[4]/C
-                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            CAM_INIT/init/data_out_reg/ADDRARDADDR[8]
+Slack (MET) :             0.211ns  (arrival time - required time)
+  Source:                 CAM_INIT/INIT/count_reg_rep[2]/C
+                            (rising edge-triggered cell FDCE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/INIT/data_out_reg/ADDRARDADDR[6]
                             (rising edge-triggered cell RAMB18E1 clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_100M_pll_clock
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
-  Data Path Delay:        0.466ns  (logic 0.164ns (35.175%)  route 0.302ns (64.825%))
+  Data Path Delay:        0.443ns  (logic 0.141ns (31.839%)  route 0.302ns (68.161%))
   Logic Levels:           0  
-  Clock Path Skew:        0.075ns (DCD - SCD - CPR)
+  Clock Path Skew:        0.048ns (DCD - SCD - CPR)
     Destination Clock Delay (DCD):    -0.276ns
-    Source Clock Delay      (SCD):    -0.547ns
+    Source Clock Delay      (SCD):    -0.520ns
     Clock Pessimism Removal (CPR):    0.196ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -1457,12 +1264,12 @@ Slack (MET) :             0.208ns  (arrival time - required time)
                                                      -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.562    -0.547    CAM_INIT/init/clk_100M
-    SLICE_X10Y60         FDRE                                         r  CAM_INIT/init/count_reg_rep[4]/C
+                         net (fo=94, routed)          0.589    -0.520    CAM_INIT/INIT/clk_100M
+    SLICE_X7Y60          FDCE                                         r  CAM_INIT/INIT/count_reg_rep[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y60         FDRE (Prop_fdre_C_Q)         0.164    -0.383 r  CAM_INIT/init/count_reg_rep[4]/Q
-                         net (fo=1, routed)           0.302    -0.081    CAM_INIT/init/count[4]
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/ADDRARDADDR[8]
+    SLICE_X7Y60          FDCE (Prop_fdce_C_Q)         0.141    -0.379 r  CAM_INIT/INIT/count_reg_rep[2]/Q
+                         net (fo=1, routed)           0.302    -0.078    CAM_INIT/INIT/count[2]
+    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/INIT/data_out_reg/ADDRARDADDR[6]
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_100M_pll_clock rise edge)
@@ -1475,16 +1282,187 @@ Slack (MET) :             0.208ns  (arrival time - required time)
                                                      -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
                          net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
-                         net (fo=92, routed)          0.871    -0.276    CAM_INIT/init/clk_100M
-    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/init/data_out_reg/CLKARDCLK
+                         net (fo=94, routed)          0.871    -0.276    CAM_INIT/INIT/clk_100M
+    RAMB18_X0Y24         RAMB18E1                                     r  CAM_INIT/INIT/data_out_reg/CLKARDCLK
                          clock pessimism             -0.196    -0.472    
-    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[8])
-                                                      0.183    -0.289    CAM_INIT/init/data_out_reg
+    RAMB18_X0Y24         RAMB18E1 (Hold_ramb18e1_CLKARDCLK_ADDRARDADDR[6])
+                                                      0.183    -0.289    CAM_INIT/INIT/data_out_reg
   -------------------------------------------------------------------
                          required time                          0.289    
-                         arrival time                          -0.081    
+                         arrival time                          -0.078    
   -------------------------------------------------------------------
-                         slack                                  0.208    
+                         slack                                  0.211    
+
+Slack (MET) :             0.212ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/data_temp_reg[23]/C
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/data_temp_reg[24]/D
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        0.343ns  (logic 0.249ns (72.541%)  route 0.094ns (27.459%))
+  Logic Levels:           1  (LUT3=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.316ns
+    Source Clock Delay      (SCD):    -0.547ns
+    Clock Pessimism Removal (CPR):    0.232ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.562    -0.547    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X8Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[23]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X8Y60          FDPE (Prop_fdpe_C_Q)         0.148    -0.399 r  CAM_INIT/SCCB_WRITE/data_temp_reg[23]/Q
+                         net (fo=1, routed)           0.094    -0.305    CAM_INIT/SCCB_WRITE/p_0_in[24]
+    SLICE_X8Y60          LUT3 (Prop_lut3_I0_O)        0.101    -0.204 r  CAM_INIT/SCCB_WRITE/data_temp[24]_i_1/O
+                         net (fo=1, routed)           0.000    -0.204    CAM_INIT/SCCB_WRITE/data_temp[24]_i_1_n_0
+    SLICE_X8Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[24]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.831    -0.316    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X8Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[24]/C
+                         clock pessimism             -0.232    -0.547    
+    SLICE_X8Y60          FDPE (Hold_fdpe_C_D)         0.131    -0.416    CAM_INIT/SCCB_WRITE/data_temp_reg[24]
+  -------------------------------------------------------------------
+                         required time                          0.416    
+                         arrival time                          -0.204    
+  -------------------------------------------------------------------
+                         slack                                  0.212    
+
+Slack (MET) :             0.220ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/data_temp_reg[7]/C
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/data_temp_reg[8]/D
+                            (rising edge-triggered cell FDPE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        0.312ns  (logic 0.226ns (72.544%)  route 0.086ns (27.456%))
+  Logic Levels:           1  (LUT4=1)
+  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.288ns
+    Source Clock Delay      (SCD):    -0.520ns
+    Clock Pessimism Removal (CPR):    0.233ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.589    -0.520    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X5Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[7]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y60          FDPE (Prop_fdpe_C_Q)         0.128    -0.392 r  CAM_INIT/SCCB_WRITE/data_temp_reg[7]/Q
+                         net (fo=1, routed)           0.086    -0.307    CAM_INIT/SCCB_WRITE/p_0_in[8]
+    SLICE_X5Y60          LUT4 (Prop_lut4_I3_O)        0.098    -0.209 r  CAM_INIT/SCCB_WRITE/data_temp[8]_i_1/O
+                         net (fo=1, routed)           0.000    -0.209    CAM_INIT/SCCB_WRITE/data_temp[8]_i_1_n_0
+    SLICE_X5Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[8]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.860    -0.288    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X5Y60          FDPE                                         r  CAM_INIT/SCCB_WRITE/data_temp_reg[8]/C
+                         clock pessimism             -0.233    -0.520    
+    SLICE_X5Y60          FDPE (Hold_fdpe_C_D)         0.092    -0.428    CAM_INIT/SCCB_WRITE/data_temp_reg[8]
+  -------------------------------------------------------------------
+                         required time                          0.428    
+                         arrival time                          -0.209    
+  -------------------------------------------------------------------
+                         slack                                  0.220    
+
+Slack (MET) :             0.224ns  (arrival time - required time)
+  Source:                 CAM_INIT/SCCB_WRITE/change_time_reg[3]/C
+                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            CAM_INIT/SCCB_WRITE/change_time_reg[5]/D
+                            (rising edge-triggered cell FDRE clocked by clk_100M_pll_clock  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_100M_pll_clock
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_100M_pll_clock rise@0.000ns - clk_100M_pll_clock rise@0.000ns)
+  Data Path Delay:        0.353ns  (logic 0.186ns (52.739%)  route 0.167ns (47.261%))
+  Logic Levels:           1  (LUT6=1)
+  Clock Path Skew:        0.038ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    -0.289ns
+    Source Clock Delay      (SCD):    -0.522ns
+    Clock Pessimism Removal (CPR):    0.196ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.246     0.246 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.440     0.686    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.326    -1.639 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.504    -1.135    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026    -1.109 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.587    -0.522    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X4Y63          FDRE                                         r  CAM_INIT/SCCB_WRITE/change_time_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y63          FDRE (Prop_fdre_C_Q)         0.141    -0.381 r  CAM_INIT/SCCB_WRITE/change_time_reg[3]/Q
+                         net (fo=6, routed)           0.167    -0.215    CAM_INIT/SCCB_WRITE/change_time[3]
+    SLICE_X3Y63          LUT6 (Prop_lut6_I5_O)        0.045    -0.170 r  CAM_INIT/SCCB_WRITE/change_time[5]_i_1/O
+                         net (fo=1, routed)           0.000    -0.170    CAM_INIT/SCCB_WRITE/change_time[5]_i_1_n_0
+    SLICE_X3Y63          FDRE                                         r  CAM_INIT/SCCB_WRITE/change_time_reg[5]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_100M_pll_clock rise edge)
+                                                      0.000     0.000 r  
+    P17                                               0.000     0.000 r  sys_clk_in (IN)
+                         net (fo=0)                   0.000     0.000    PLL/inst/sys_clk_in
+    P17                  IBUF (Prop_ibuf_I_O)         0.434     0.434 r  PLL/inst/clkin1_ibufg/O
+                         net (fo=1, routed)           0.481     0.915    PLL/inst/sys_clk_in_pll_clock
+    PLLE2_ADV_X0Y0       PLLE2_ADV (Prop_plle2_adv_CLKIN1_CLKOUT0)
+                                                     -2.641    -1.726 r  PLL/inst/plle2_adv_inst/CLKOUT0
+                         net (fo=1, routed)           0.550    -1.176    PLL/inst/clk_100M_pll_clock
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029    -1.147 r  PLL/inst/clkout1_buf/O
+                         net (fo=94, routed)          0.858    -0.289    CAM_INIT/SCCB_WRITE/clk_100M
+    SLICE_X3Y63          FDRE                                         r  CAM_INIT/SCCB_WRITE/change_time_reg[5]/C
+                         clock pessimism             -0.196    -0.484    
+    SLICE_X3Y63          FDRE (Hold_fdre_C_D)         0.091    -0.393    CAM_INIT/SCCB_WRITE/change_time_reg[5]
+  -------------------------------------------------------------------
+                         required time                          0.393    
+                         arrival time                          -0.170    
+  -------------------------------------------------------------------
+                         slack                                  0.224    
 
 
 
@@ -1498,37 +1476,37 @@ Period(ns):         10.000
 Sources:            { PLL/inst/plle2_adv_inst/CLKOUT0 }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location        Pin
-Min Period        n/a     RAMB18E1/CLKARDCLK  n/a            2.576         10.000      7.424      RAMB18_X0Y24    CAM_INIT/init/data_out_reg/CLKARDCLK
+Min Period        n/a     RAMB18E1/CLKARDCLK  n/a            2.576         10.000      7.424      RAMB18_X0Y24    CAM_INIT/INIT/data_out_reg/CLKARDCLK
 Min Period        n/a     BUFG/I              n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0   PLL/inst/clkout1_buf/I
 Min Period        n/a     PLLE2_ADV/CLKOUT0   n/a            1.249         10.000      8.751      PLLE2_ADV_X0Y0  PLL/inst/plle2_adv_inst/CLKOUT0
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X10Y61    CAM_INIT/init/count_reg[0]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X10Y61    CAM_INIT/init/count_reg[10]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X10Y61    CAM_INIT/init/count_reg[1]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X11Y60    CAM_INIT/init/count_reg[2]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X12Y60    CAM_INIT/init/count_reg[3]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X10Y61    CAM_INIT/init/count_reg[4]/C
-Min Period        n/a     FDRE/C              n/a            1.000         10.000      9.000      SLICE_X11Y60    CAM_INIT/init/count_reg[5]/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_1_cooolDelFlop/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_2_cooolDelFlop/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X5Y58     CAM_INIT/INIT/count_reg[0]/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X2Y59     CAM_INIT/INIT/count_reg[10]/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X5Y58     CAM_INIT/INIT/count_reg[1]/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X4Y59     CAM_INIT/INIT/count_reg[2]/C
+Min Period        n/a     FDCE/C              n/a            1.000         10.000      9.000      SLICE_X4Y59     CAM_INIT/INIT/count_reg[3]/C
 Max Period        n/a     PLLE2_ADV/CLKOUT0   n/a            160.000       10.000      150.000    PLLE2_ADV_X0Y0  PLL/inst/plle2_adv_inst/CLKOUT0
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X36Y47    led_reg[1]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y58     CAM_INIT/sender/wait_time_reg[0]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y59     CAM_INIT/sender/wait_time_reg[10]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X5Y60     CAM_INIT/sender/wait_time_reg[11]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y59     CAM_INIT/sender/wait_time_reg[12]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y59     CAM_INIT/sender/wait_time_reg[13]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y59     CAM_INIT/sender/wait_time_reg[14]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y58     CAM_INIT/sender/wait_time_reg[15]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y58     CAM_INIT/sender/wait_time_reg[16]/C
-Low Pulse Width   Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X6Y59     CAM_INIT/sender/wait_time_reg[1]/C
-High Pulse Width  Slow    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[0]/C
-High Pulse Width  Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[0]/C
-High Pulse Width  Slow    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[10]/C
-High Pulse Width  Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[10]/C
-High Pulse Width  Slow    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[1]/C
-High Pulse Width  Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X10Y61    CAM_INIT/init/count_reg[1]/C
-High Pulse Width  Slow    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X11Y60    CAM_INIT/init/count_reg[2]/C
-High Pulse Width  Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X11Y60    CAM_INIT/init/count_reg[2]/C
-High Pulse Width  Slow    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X12Y60    CAM_INIT/init/count_reg[3]/C
-High Pulse Width  Fast    FDRE/C              n/a            0.500         5.000       4.500      SLICE_X12Y60    CAM_INIT/init/count_reg[3]/C
+Low Pulse Width   Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X5Y58     CAM_INIT/INIT/count_reg[0]/C
+Low Pulse Width   Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X5Y58     CAM_INIT/INIT/count_reg[1]/C
+Low Pulse Width   Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y59     CAM_INIT/INIT/count_reg[2]/C
+Low Pulse Width   Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y59     CAM_INIT/INIT/count_reg[3]/C
+Low Pulse Width   Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y59     CAM_INIT/INIT/count_reg[5]/C
+Low Pulse Width   Fast    FDPE/C              n/a            0.500         5.000       4.500      SLICE_X5Y60     CAM_INIT/SCCB_WRITE/data_temp_reg[29]/C
+Low Pulse Width   Fast    FDPE/C              n/a            0.500         5.000       4.500      SLICE_X5Y60     CAM_INIT/SCCB_WRITE/data_temp_reg[30]/C
+Low Pulse Width   Fast    FDPE/C              n/a            0.500         5.000       4.500      SLICE_X5Y61     CAM_INIT/SCCB_WRITE/data_temp_reg[31]/C
+Low Pulse Width   Fast    FDPE/C              n/a            0.500         5.000       4.500      SLICE_X5Y60     CAM_INIT/SCCB_WRITE/data_temp_reg[7]/C
+Low Pulse Width   Fast    FDPE/C              n/a            0.500         5.000       4.500      SLICE_X5Y60     CAM_INIT/SCCB_WRITE/data_temp_reg[8]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_1_cooolDelFlop/C
+High Pulse Width  Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_1_cooolDelFlop/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_2_cooolDelFlop/C
+High Pulse Width  Fast    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X3Y60     CAM_INIT/INIT/CAM_INIT/INIT/data_out_reg_cooolgate_en_gate_2_cooolDelFlop/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X5Y58     CAM_INIT/INIT/count_reg[0]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X2Y59     CAM_INIT/INIT/count_reg[10]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X5Y58     CAM_INIT/INIT/count_reg[1]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y59     CAM_INIT/INIT/count_reg[2]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y59     CAM_INIT/INIT/count_reg[3]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X3Y59     CAM_INIT/INIT/count_reg[4]/C
 
 
 
