@@ -21,16 +21,16 @@
 
 
 module reg_solve(
-    input clk,  //100MHz时钟信号
-    input rst,  //复位信号
+    input clk,                  //100MHz时钟信号
+    input rst,                  //复位信号
     output reg [15:0]data_out,  //配置寄存器地址+寄存器数据
-    output reg_ready,   //寄存器配置完成信号
-    input sccb_ready    //SCCB通信完成信号
+    output reg_ready,           //寄存器配置完成信号
+    input sccb_ready            //SCCB通信完成信号
 );
-    parameter num_reg = 176;  //寄存器配置命令条数
+    parameter num_reg = 176;    //寄存器配置命令条数
     reg [10:0] count = 0;
 
-    always @ (posedge clk)
+    always @ (posedge clk or posedge rst)
     begin
         if(rst)
             count <= 0;

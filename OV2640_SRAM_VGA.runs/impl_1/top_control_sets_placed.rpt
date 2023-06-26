@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sun Jun 25 14:41:46 2023
+| Date         : Sun Jun 25 21:35:12 2023
 | Host         : DESKTOP-ATCH8V2 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    20 |
-|    Minimum number of control sets                        |    20 |
+| Total control sets                                       |    23 |
+|    Minimum number of control sets                        |    23 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    91 |
+| Unused register locations in slices containing registers |   114 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,11 +39,11 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    20 |
-| >= 0 to < 4        |     2 |
-| >= 4 to < 6        |     3 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     0 |
+| Total control sets |    23 |
+| >= 0 to < 4        |     6 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     1 |
 | >= 10 to < 12      |     3 |
 | >= 12 to < 14      |     3 |
 | >= 14 to < 16      |     0 |
@@ -58,41 +58,44 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              10 |            9 |
-| No           | No                    | Yes                    |              12 |            6 |
-| No           | Yes                   | No                     |              12 |            5 |
-| Yes          | No                    | No                     |              32 |           11 |
-| Yes          | No                    | Yes                    |              61 |           16 |
-| Yes          | Yes                   | No                     |             118 |           35 |
+| No           | No                    | No                     |               9 |            7 |
+| No           | No                    | Yes                    |              17 |           10 |
+| No           | Yes                   | No                     |              13 |            5 |
+| Yes          | No                    | No                     |              28 |           10 |
+| Yes          | No                    | Yes                    |             141 |           38 |
+| Yes          | Yes                   | No                     |              38 |           11 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
-|     Clock Signal    |               Enable Signal               |              Set/Reset Signal              | Slice Load Count | Bel Load Count |
-+---------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
-|  cam_pclk_IBUF_BUFG | CAPTURE/key_ctrl                          | CAPTURE/FSM_sequential_key_ctrl_i_1_n_0    |                1 |              1 |
-|  PLL/inst/clk_100M  |                                           | CAM_INIT/SCCB_WRITE/AR[0]                  |                1 |              2 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/stat[3]_i_1_n_0       | CAM_INIT/SCCB_WRITE/AR[0]                  |                1 |              4 |
-|  cam_pclk_IBUF_BUFG |                                           |                                            |                3 |              4 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/sio_c1_out            |                                            |                3 |              5 |
-|  PLL/inst/clk_100M  |                                           |                                            |                6 |              6 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/change_time_0         | CAM_INIT/SCCB_WRITE/change_time[8]_i_1_n_0 |                3 |              7 |
-|  clk                |                                           | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             10 |
-|  clk                | VGA/TIME_MARK/y_cnt0                      | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             10 |
-|  cam_pclk_IBUF_BUFG | CAPTURE/h_cnt[9]_i_1_n_0                  | CAPTURE/now_addr[18]_i_1_n_0               |                4 |             10 |
-|  clk                |                                           | VGA/TIME_MARK/x_cnt_reg[5]_0               |                5 |             12 |
-|  clk                | VGA/TIME_MARK/counter                     | VGA/TIME_MARK/counter_reg[9]               |                3 |             12 |
-|  cam_pclk_IBUF_BUFG | CAPTURE/v_cnt                             | CAPTURE/now_addr[18]_i_1_n_0               |                3 |             12 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/wait_time[16]_i_1_n_0 | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             17 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/E[0]                  | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             19 |
-|  clk                | VGA/TIME_MARK/counter                     | VGA/TIME_MARK/y_cnt_reg[5]_0               |                5 |             19 |
-|  cam_pclk_IBUF_BUFG | CAPTURE/next_addr                         | CAPTURE/now_addr[18]_i_1_n_0               |                5 |             19 |
-|  cam_pclk_IBUF_BUFG | CAPTURE/E[0]                              | CAPTURE/now_addr[18]_i_1_n_0               |                6 |             19 |
-|  cam_pclk_IBUF_BUFG | CAPTURE/rgb565                            |                                            |                8 |             27 |
-|  PLL/inst/clk_100M  | CAM_INIT/SCCB_WRITE/data_temp[31]_i_1_n_0 | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             30 |
-+---------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
++--------------------------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
+|             Clock Signal             |               Enable Signal               |              Set/Reset Signal              | Slice Load Count | Bel Load Count |
++--------------------------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
+|  CAPTURE/key_ctrl_reg[0]_LDC_i_1_n_0 |                                           | CAPTURE/key_ctrl_reg[0]_LDC_i_2_n_0        |                1 |              1 |
+|  cam_pclk_IBUF_BUFG                  |                                           | CAPTURE/key_ctrl_reg[0]_LDC_i_1_n_0        |                1 |              1 |
+|  cam_pclk_IBUF_BUFG                  |                                           | CAPTURE/key_ctrl_reg[0]_LDC_i_2_n_0        |                1 |              1 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/write_over0                       | CAM_INIT/SCCB_WRITE/AR[0]                  |                1 |              1 |
+|  PLL/inst/clk_100M                   |                                           | CAM_INIT/SCCB_WRITE/AR[0]                  |                1 |              2 |
+|  cam_pclk_IBUF_BUFG                  |                                           | CAM_INIT/SCCB_WRITE/AR[0]                  |                2 |              3 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/stat0                 | CAM_INIT/SCCB_WRITE/AR[0]                  |                1 |              4 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/sio_c1_out            |                                            |                2 |              5 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/change_time_0         | CAM_INIT/SCCB_WRITE/change_time[8]_i_1_n_0 |                3 |              7 |
+|  PLL/inst/clk_100M                   |                                           |                                            |                7 |              9 |
+|  clk                                 |                                           | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             10 |
+|  clk                                 | VGA/TIME_MARK/y_cnt0                      | CAM_INIT/SCCB_WRITE/AR[0]                  |                4 |             10 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/h_cnt[9]_i_1_n_0                  | CAM_INIT/SCCB_WRITE/AR[0]                  |                3 |             10 |
+|  clk                                 |                                           | VGA/TIME_MARK/x_cnt_reg[8]_0               |                4 |             12 |
+|  clk                                 | VGA/TIME_MARK/counter                     | VGA/TIME_MARK/counter_reg[2]               |                3 |             12 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/v_cnt[0]_i_1_n_0                  | CAM_INIT/SCCB_WRITE/AR[0]                  |                3 |             12 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/wait_time[16]_i_1_n_0 | CAM_INIT/SCCB_WRITE/AR[0]                  |                4 |             17 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/E[0]                  | CAM_INIT/SCCB_WRITE/AR[0]                  |                7 |             19 |
+|  clk                                 | VGA/TIME_MARK/counter                     | VGA/TIME_MARK/y_cnt_reg[9]_0               |                5 |             19 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/next_addr[0]_i_1_n_0              | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             19 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/now_addr[18]_i_1_n_0              | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             19 |
+|  cam_pclk_IBUF_BUFG                  | CAPTURE/rgb565[14]_i_1_n_0                |                                            |                8 |             23 |
+|  PLL/inst/clk_100M                   | CAM_INIT/SCCB_WRITE/data_temp[31]_i_1_n_0 | CAM_INIT/SCCB_WRITE/AR[0]                  |                5 |             30 |
++--------------------------------------+-------------------------------------------+--------------------------------------------+------------------+----------------+
 
 

@@ -278,3 +278,6 @@ set_property CONFIG_MODE SPIx4 [current_design]
 
 set_property IOSTANDARD LVCMOS33 [get_ports change_resolution]
 set_property PACKAGE_PIN R1 [get_ports change_resolution]
+
+set_property PACKAGE_PIN K2 [get_ports {led[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led[3]}]

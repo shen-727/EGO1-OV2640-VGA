@@ -36,14 +36,14 @@ module sccb_sim(
 
 
     sccb_solve  SCCB(
-    .clk(clk_100M),              //时钟信号
-    .rst(reset),              //复位信号
-    .sio_d(sio_d),            //摄像头sio_d信号
-    .sio_c(sio_c),       //摄像头sio_c信号
-    .reg_ready(reg_ready),            //寄存器配置是否完成
-    .sccb_ready(sccb_ready),    //SCCB协议传输完成
-    .data_addr(data_addr),       //寄存器地址
-    .data_in(data_in)          //寄存器数据
+    .clk(clk_100M),                 //时钟信号
+    .rst(reset),                    //复位信号
+    .sio_d(sio_d),                  //摄像头sio_d信号
+    .sio_c(sio_c),                  //摄像头sio_c信号
+    .reg_ready(reg_ready),          //寄存器配置是否完成
+    .sccb_ready(sccb_ready),        //SCCB协议传输完成
+    .data_addr(data_addr),          //寄存器地址
+    .data_in(data_in)               //寄存器数据
     );
 
     initial begin

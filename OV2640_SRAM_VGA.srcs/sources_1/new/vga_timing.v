@@ -21,11 +21,11 @@
 
 
 module vga_timing(
-    input vga_clk,  //25MHz时钟信号
-    input rst,      //复位信号
-    output hsync,   //行同步信号
-    output vsync,   //场同步信号
-    output valid,   //像素有效信号
+    input vga_clk,      //25MHz时钟信号
+    input rst,          //复位信号
+    output hsync,       //行同步信号
+    output vsync,       //场同步信号
+    output valid,       //像素有效信号
     output [9:0] h_cnt, //当前像素列位置
     output [9:0] v_cnt  //当前像素行位置
     );
@@ -68,21 +68,14 @@ module vga_timing(
                 y_cnt <= y_cnt + 1;
         end
     
-    assign hsync = ((x_cnt > h_frontporch)) ? 1'b1 : 
-                    1'b0;
-    assign vsync = ((y_cnt > v_frontporch)) ? 1'b1 : 
-                    1'b0;
+    assign hsync = ((x_cnt > h_frontporch)) ? 1'b1 : 1'b0;
+    assign vsync = ((y_cnt > v_frontporch)) ? 1'b1 : 1'b0;
     
-    assign h_valid = ((x_cnt > h_active) & (x_cnt <= h_backporch)) ? 1'b1 : 
-                        1'b0;
-    assign v_valid = ((y_cnt > v_active) & (y_cnt <= v_backporch)) ? 1'b1 : 
-                        1'b0;
+    assign h_valid = ((x_cnt > h_active) & (x_cnt <= h_backporch)) ? 1'b1 : 1'b0;
+    assign v_valid = ((y_cnt > v_active) & (y_cnt <= v_backporch)) ? 1'b1 : 1'b0;
     
-    assign valid = ((h_valid == 1'b1) & (v_valid == 1'b1)) ? 1'b1 : 
-                    1'b0;
+    assign valid = ((h_valid == 1'b1) & (v_valid == 1'b1)) ? 1'b1 : 1'b0;
     
-    assign h_cnt = ((h_valid == 1'b1)) ? x_cnt - 144 : 
-                    {10{1'b0}};
-    assign v_cnt = ((v_valid == 1'b1)) ? y_cnt - 35 : 
-                    {10{1'b0}};
+    assign h_cnt = ((h_valid == 1'b1)) ? x_cnt - 144 : {10{1'b0}};
+    assign v_cnt = ((v_valid == 1'b1)) ? y_cnt - 35  : {10{1'b0}};
 endmodule

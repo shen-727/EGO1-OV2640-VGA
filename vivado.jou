@@ -2,24 +2,23 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Mon Jun 19 14:51:44 2023
-# Process ID: 17048
+# Start of session at: Sun Jun 25 15:41:44 2023
+# Process ID: 22196
 # Current directory: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent15684 C:\Users\SJQ\Data\FPGA_Projects\OV2640_SRAM_VGA\OV2640_SRAM_VGA.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12884 C:\Users\SJQ\Data\FPGA_Projects\OV2640_SRAM_VGA\OV2640_SRAM_VGA.xpr
 # Log file: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/vivado.log
 # Journal file: C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.xpr
 update_compile_order -fileset sources_1
-export_ip_user_files -of_objects  [get_files C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/SCCB_read.v] -no_script -reset -force -quiet
-remove_files  C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/SCCB_read.v
-move_files -fileset sim_1 [get_files  C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/get_pic/getpic_ready.v]
-move_files -fileset sim_1 [get_files  C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/ov2640_ctrl.v]
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run impl_1
 open_hw
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
 connect_hw_server
 open_hw_target
 set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
@@ -31,88 +30,13 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-file mkdir C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-close [ open C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new/sccb_sim.v w ]
-add_files -fileset sim_1 C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sim_1/new/sccb_sim.v
-update_compile_order -fileset sim_1
-export_ip_user_files -of_objects  [get_files C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/get_pic/getpic_ready.v] -no_script -reset -force -quiet
-remove_files  -fileset sim_1 C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/get_pic/getpic_ready.v
-export_ip_user_files -of_objects  [get_files C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/ov2640_ctrl.v] -no_script -reset -force -quiet
-remove_files  -fileset sim_1 C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/ov2640_ctrl.v
-create_ip -name blk_mem_gen -vendor xilinx.com -library ip -version 8.4 -module_name blk_ram -dir c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip
-set_property -dict [list CONFIG.Component_Name {blk_ram} CONFIG.Memory_Type {Simple_Dual_Port_RAM} CONFIG.Use_Byte_Write_Enable {false} CONFIG.Write_Width_A {4} CONFIG.Write_Depth_A {120000} CONFIG.Read_Width_A {4} CONFIG.Operating_Mode_A {NO_CHANGE} CONFIG.Enable_A {Always_Enabled} CONFIG.Write_Width_B {4} CONFIG.Read_Width_B {4} CONFIG.Enable_B {Always_Enabled} CONFIG.Register_PortA_Output_of_Memory_Primitives {false} CONFIG.Register_PortB_Output_of_Memory_Primitives {true} CONFIG.Port_B_Clock {100} CONFIG.Port_B_Enable_Rate {100}] [get_ips blk_ram]
-generate_target {instantiation_template} [get_files c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/blk_ram/blk_ram.xci]
-update_compile_order -fileset sources_1
-generate_target all [get_files  c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/blk_ram/blk_ram.xci]
-catch { config_ip_cache -export [get_ips -all blk_ram] }
-export_ip_user_files -of_objects [get_files c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/blk_ram/blk_ram.xci] -no_script -sync -force -quiet
-create_ip_run [get_files -of_objects [get_fileset sources_1] c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/blk_ram/blk_ram.xci]
-launch_runs -jobs 6 blk_ram_synth_1
-export_simulation -of_objects [get_files c:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/ip/blk_ram/blk_ram.xci] -directory C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.ip_user_files -ipstatic_source_dir C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.cache/compile_simlib/modelsim} {questa=C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.cache/compile_simlib/questa} {riviera=C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.cache/compile_simlib/riviera} {activehdl=C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
 synth_design -rtl -name rtl_1
-refresh_design
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-refresh_design
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-refresh_design
-set_property IOSTANDARD LVCMOS33 [get_ports [list change_resolution]]
-place_ports change_resolution R1
+place_ports {led[3]} K2
+set_property IOSTANDARD LVCMOS33 [get_ports [list {led[3]}]]
 save_constraints
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
 write_cfgmem  -format mcs -size 8 -interface SPIx4 -loadbit {up 0x00000000 "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit" } -checksum -force -disablebitswap -file "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash"
 set_property PROGRAM.ADDRESS_RANGE  {use_file} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
 set_property PROGRAM.FILES [list "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash.mcs" ] [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
@@ -127,205 +51,3 @@ startgroup
 create_hw_bitstream -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [get_property PROGRAM.HW_CFGMEM_BITFILE [ lindex [get_hw_devices xc7a35t_0] 0]]; program_hw_devices [lindex [get_hw_devices xc7a35t_0] 0]; refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0];
 program_hw_cfgmem -hw_cfgmem [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
 endgroup
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-reset_run impl_1 -prev_step 
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-launch_simulation
-source top.tcl
-close_sim
-set_property is_enabled false [get_files  C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/top.v]
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-launch_simulation
-source vga_show.tcl
-set_property is_enabled true [get_files  C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.srcs/sources_1/new/top.v]
-update_compile_order -fileset sources_1
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top top [current_fileset]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sources_1
-# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
-set_property source_mgmt_mode None [current_project]
-set_property top sccb_sim [get_filesets sim_1]
-set_property top_lib xil_defaultlib [get_filesets sim_1]
-# Re-enabling previously disabled source management mode.
-set_property source_mgmt_mode All [current_project]
-update_compile_order -fileset sim_1
-close_sim
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-launch_simulation
-source sccb_sim.tcl
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-close_sim
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-write_cfgmem  -format mcs -size 8 -interface SPIx4 -loadbit {up 0x00000000 "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit" } -checksum -force -disablebitswap -file "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash"
-set_property PROGRAM.ADDRESS_RANGE  {use_file} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.FILES [list "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash.mcs" ] [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.PRM_FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash.prm} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.UNUSED_PIN_TERMINATION {pull-none} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.BLANK_CHECK  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.ERASE  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.CFG_PROGRAM  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.VERIFY  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.CHECKSUM  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-startgroup 
-create_hw_bitstream -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [get_property PROGRAM.HW_CFGMEM_BITFILE [ lindex [get_hw_devices xc7a35t_0] 0]]; program_hw_devices [lindex [get_hw_devices xc7a35t_0] 0]; refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0];
-program_hw_cfgmem -hw_cfgmem [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-endgroup
-launch_simulation
-source sccb_sim.tcl
-run all
-current_wave_config {Untitled 4}
-add_wave {{/sccb_sim/SCCB/stat}} 
-current_wave_config {Untitled 4}
-add_wave {{/sccb_sim/SCCB/nxt_stat}} 
-relaunch_sim
-run all
-relaunch_sim
-run all
-relaunch_sim
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-close_sim
-launch_simulation
-source sccb_sim.tcl
-current_wave_config {Untitled 5}
-add_wave {{/sccb_sim/SCCB/reg_ready}} 
-run all
-relaunch_sim
-run all
-close_sim
-launch_simulation
-source sccb_sim.tcl
-run all
-relaunch_sim
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-relaunch_sim
-relaunch_sim
-run all
-relaunch_sim
-run all
-current_wave_config {Untitled 6}
-add_wave {{/sccb_sim/SCCB/stat}} 
-relaunch_sim
-run all
-run all
-relaunch_sim
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-relaunch_sim
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-relaunch_sim
-relaunch_sim
-close_sim
-launch_simulation
-source sccb_sim.tcl
-current_wave_config {Untitled 9}
-add_wave {{/sccb_sim/SCCB/stat}} 
-run all
-relaunch_sim
-run all
-relaunch_sim
-relaunch_sim
-run all
-relaunch_sim
-run all
-relaunch_sim
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-relaunch_sim
-close_sim
-launch_simulation
-source sccb_sim.tcl
-run all
-relaunch_sim
-relaunch_sim
-run all
-relaunch_sim
-current_wave_config {Untitled 11}
-add_wave {{/sccb_sim/SCCB/data_temp}} 
-relaunch_sim
-run all
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-reset_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-wait_on_run impl_1
-set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
-set_property PROGRAM.FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit} [get_hw_devices xc7a35t_0]
-program_hw_devices [get_hw_devices xc7a35t_0]
-refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-write_cfgmem  -format mcs -size 8 -interface SPIx4 -loadbit {up 0x00000000 "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/top.bit" } -checksum -force -disablebitswap -file "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash"
-set_property PROGRAM.ADDRESS_RANGE  {use_file} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.FILES [list "C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash.mcs" ] [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.PRM_FILE {C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/OV2640_SRAM_VGA.runs/impl_1/flash.prm} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.UNUSED_PIN_TERMINATION {pull-none} [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.BLANK_CHECK  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.ERASE  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.CFG_PROGRAM  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.VERIFY  1 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-set_property PROGRAM.CHECKSUM  0 [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-startgroup 
-create_hw_bitstream -hw_device [lindex [get_hw_devices xc7a35t_0] 0] [get_property PROGRAM.HW_CFGMEM_BITFILE [ lindex [get_hw_devices xc7a35t_0] 0]]; program_hw_devices [lindex [get_hw_devices xc7a35t_0] 0]; refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0];
-program_hw_cfgmem -hw_cfgmem [ get_property PROGRAM.HW_CFGMEM [lindex [get_hw_devices xc7a35t_0] 0]]
-endgroup
-close_sim

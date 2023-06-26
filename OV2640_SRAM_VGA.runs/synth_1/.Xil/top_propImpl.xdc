@@ -153,3 +153,5 @@ set_property src_info {type:XDC file:1 line:274 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN R17 [get_ports capture]
 set_property src_info {type:XDC file:1 line:280 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN R1 [get_ports change_resolution]
+set_property src_info {type:XDC file:1 line:282 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN K2 [get_ports {led[3]}]

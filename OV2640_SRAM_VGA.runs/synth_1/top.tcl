@@ -18,7 +18,7 @@ proc create_report { reportName command } {
   }
 }
 set_param chipscope.maxJobs 1
-set_param synth.incrementalSynthesisCache C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/.Xil/Vivado-17048-DESKTOP-ATCH8V2/incrSyn
+set_param synth.incrementalSynthesisCache C:/Users/SJQ/Data/FPGA_Projects/OV2640_SRAM_VGA/.Xil/Vivado-22196-DESKTOP-ATCH8V2/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Synth 8-256} -limit 10000
 set_msg_config -id {Synth 8-638} -limit 10000
